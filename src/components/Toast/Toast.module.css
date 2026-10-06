@@ -1,0 +1,65 @@
+/* src/components/Toast/Toast.module.css */
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 320px;
+  box-sizing: border-box;
+  padding: var(--spacing-12) var(--spacing-16);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-transparent-84);
+  box-shadow: var(--shadow-toast);
+  overflow: hidden;
+}
+
+.oneLine {
+  height: 56px;
+}
+
+.glow {
+  position: absolute;
+  left: -74px;
+  pointer-events: none;
+}
+
+.oneLine .glow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.twoLines .glow {
+  top: -65px;
+}
+
+.icon {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.textBlock {
+  position: relative;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  min-width: 0;
+  color: var(--color-label-inverse);
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+  word-break: break-word;
+}
+
+.message {
+  margin: 0;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-24);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-20);
+}

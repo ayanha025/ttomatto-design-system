@@ -1,0 +1,238 @@
+/* src/docs/TokenBlocks.module.css — Storybook 문서 전용 스타일 */
+.section {
+  margin: 32px 0 48px;
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-24);
+  color: var(--color-label-primary);
+  margin: 0 0 4px;
+  text-transform: capitalize;
+}
+
+.sectionDesc {
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  color: var(--color-label-tertiary);
+  margin: 0 0 16px;
+}
+
+/* Color */
+.paletteRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+
+.semanticGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.swatch:hover {
+  border-color: var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.swatch:focus-visible {
+  outline: 2px solid var(--color-border-interactive-primary);
+  outline-offset: 2px;
+}
+
+.chip {
+  height: 56px;
+  /* 투명 색상도 알아볼 수 있게 체크무늬 배경 */
+  background-image:
+    linear-gradient(45deg, var(--color-bg-secondary) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--color-bg-secondary) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--color-bg-secondary) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--color-bg-secondary) 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+}
+
+.chipFill {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+
+.swatchMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+}
+
+.swatchName {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-18);
+  color: var(--color-label-primary);
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--color-label-tertiary);
+  word-break: break-all;
+}
+
+.copied {
+  color: var(--color-state-success-strong);
+}
+
+/* Table (Typography, Spacing, Radius, Shadow) */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-label-tertiary);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border-primary);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--color-border-secondary);
+  vertical-align: middle;
+  font-size: var(--font-size-14);
+  color: var(--color-label-secondary);
+}
+
+.sample {
+  color: var(--color-label-primary);
+  margin: 0;
+}
+
+.spacingBar {
+  height: 16px;
+  min-width: 1px;
+  background: var(--color-primary-default);
+  border-radius: 2px;
+}
+
+.radiusBox {
+  width: 72px;
+  height: 72px;
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-primary-default);
+}
+
+.shadowBox {
+  width: 120px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-primary);
+}
+
+.shadowStage {
+  padding: 16px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  display: inline-block;
+}
+
+/* Introduction */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-primary);
+}
+
+/* 단계 사이 화살표 */
+.step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-12);
+  color: var(--color-label-disabled);
+}
+
+.stepTitle {
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-label-primary);
+}
+
+.stepDesc {
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-18);
+  color: var(--color-label-tertiary);
+}
+
+.stepHighlight {
+  border-color: var(--color-primary-default);
+  background: var(--color-bg-selected-hovered);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 24px 0 40px;
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+}
+
+.stat {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+
+.statValue {
+  font-size: var(--font-size-28);
+  line-height: var(--line-height-38);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-label-primary);
+}
+
+.statLabel {
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-18);
+  color: var(--color-label-tertiary);
+}

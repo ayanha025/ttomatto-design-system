@@ -1,0 +1,64 @@
+/* src/components/Radio/Radio.module.css */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  cursor: pointer;
+}
+
+.wrapper.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border-interactive-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease;
+}
+
+.radio:hover {
+  border-color: var(--color-border-interactive-primary-hovered);
+}
+
+.checked {
+  border-color: var(--color-primary-default);
+}
+
+.checked:hover {
+  border-color: var(--color-primary-hovered);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-default);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-20);
+  color: var(--color-label-primary);
+  letter-spacing: var(--letter-spacing);
+}
+
+/* 키보드 포커스 표시: 숨긴 input 다음에 오는 시각 요소에 링 표시 */
+.hiddenInput:focus-visible + .radio {
+  outline: 2px solid var(--color-border-interactive-primary);
+  outline-offset: 2px;
+}

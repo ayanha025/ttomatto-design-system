@@ -1,0 +1,52 @@
+import { Meta, Unstyled } from '@storybook/blocks'
+import { Pipeline, Stats } from './TokenBlocks'
+
+<Meta title="Introduction" />
+
+# New Design System
+
+Figma에서 설계한 New 디자인 시스템을 React 컴포넌트로 구현하고 문서화한 Storybook입니다.
+디자이너가 토큰 설계부터 코드 구현, 배포와 변경 검토까지 직접 관리합니다.
+
+<Unstyled>
+  <Stats />
+</Unstyled>
+
+## 토큰 파이프라인
+
+디자인 값은 한 곳(토큰 JSON)에서 관리하고, 스크립트로 CSS 변수를 생성합니다.
+컴포넌트는 색상·간격·폰트 값을 직접 쓰지 않고 항상 CSS 변수를 참조하므로, 토큰을 바꾸면 모든 컴포넌트에 반영됩니다.
+
+<Unstyled>
+  <Pipeline />
+</Unstyled>
+
+예를 들어 메인 컬러를 바꿀 때는 `color.json`의 값 하나만 수정하고 `npm run build-tokens`를 실행하면 됩니다.
+Chromatic이 바뀐 컴포넌트의 전후 화면을 보여 주고, 디자이너가 확인 후 승인합니다.
+
+## 구성
+
+- **Foundations** — Color, Typography, Spacing, Radius, Shadow 토큰. 견본을 클릭하면 CSS 변수가 복사됩니다.
+- **Components** — Button, TextField, SelectField, SearchField, Checkbox, Radio, Chip, ProgressBar, Toast, Modal, BottomSheet
+
+## 설계 원칙
+
+- **토큰만 사용** — 컴포넌트 스타일에 하드코딩된 값을 두지 않습니다.
+- **개발자가 바로 쓸 수 있게** — 모든 컴포넌트가 `className`, `ref`, HTML 기본 속성을 받고, 폼 라이브러리와 바로 연결됩니다.
+- **접근성 기본 제공** — 키보드만으로 조작할 수 있고, 스크린리더가 역할과 상태를 읽을 수 있습니다.
+- **환경에 구애받지 않게** — React 18 이상이면 Vite와 Next.js(App Router)에서 수정 없이 동작합니다.
+
+## 사용 방법
+
+컴포넌트 코드를 서비스 저장소에 복사해서 사용합니다. 자세한 방법은 [GitHub README](https://github.com/ayanha025/Design-system#서비스에-적용하기)를 참고하세요.
+
+```tsx
+import { Button } from '@/components/Button'
+import { toast } from '@/components/Toast'
+
+<Button onClick={() => toast.success('저장되었습니다.')}>저장</Button>
+```
+
+## 기술 스택
+
+React 18 · TypeScript · Vite · CSS Modules · Storybook 8 · Chromatic · Sonner

@@ -1,0 +1,72 @@
+/* src/components/Chip/Chip.module.css */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-12);
+  border-radius: var(--radius-full);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: default;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-18);
+  letter-spacing: var(--letter-spacing);
+}
+
+.filled {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-label-primary);
+}
+
+.filled:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.filled.selected {
+  background-color: var(--color-primary-default);
+  color: var(--color-label-inverse);
+}
+
+.outlined {
+  background-color: transparent;
+  border: 1px solid var(--color-border-primary);
+  color: var(--color-label-primary);
+}
+
+.outlined:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.outlined.selected {
+  border-color: var(--color-primary-default);
+  color: var(--color-primary-default);
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--color-border-interactive-primary);
+  outline-offset: 2px;
+}

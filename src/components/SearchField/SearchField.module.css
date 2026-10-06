@@ -1,0 +1,56 @@
+/* src/components/SearchField/SearchField.module.css */
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-8) var(--spacing-12);
+  width: 100%;
+}
+
+.wrapper:focus-within {
+  border-color: var(--color-border-interactive-primary);
+}
+
+.searchIcon {
+  color: var(--color-label-tertiary);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  letter-spacing: var(--letter-spacing);
+  color: var(--color-label-primary);
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.input::placeholder {
+  color: var(--color-label-disabled);
+}
+
+.input:disabled {
+  color: var(--color-label-disabled);
+  cursor: not-allowed;
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-label-tertiary);
+}
+
+.clearButton:hover {
+  color: var(--color-label-primary);
+}

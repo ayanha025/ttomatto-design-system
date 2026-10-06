@@ -1,0 +1,74 @@
+/* src/components/Button/Button.module.css */
+.button {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--color-primary-default);
+  color: var(--color-label-inverse);
+}
+.primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hovered);
+}
+.primary:active:not(:disabled) {
+  background-color: var(--color-primary-pressed);
+}
+
+.secondary {
+  background-color: var(--color-secondary-default);
+  color: var(--color-label-inverse);
+}
+.secondary:hover:not(:disabled) {
+  background-color: var(--color-secondary-hovered);
+}
+.secondary:active:not(:disabled) {
+  background-color: var(--color-secondary-pressed);
+}
+
+.tertiary {
+  background-color: var(--color-tertiary-default);
+  color: var(--color-label-primary);
+}
+.tertiary:hover:not(:disabled) {
+  background-color: var(--color-tertiary-hovered);
+}
+.tertiary:active:not(:disabled) {
+  background-color: var(--color-tertiary-pressed);
+}
+
+/* Sizes */
+.small {
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-18);
+  padding: var(--spacing-8) var(--spacing-12);
+  min-height: 34px;
+}
+
+.medium {
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  padding: var(--spacing-8) var(--spacing-16);
+  min-height: 40px;
+}
+
+.large {
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-24);
+  padding: var(--spacing-12) var(--spacing-24);
+  min-height: 48px;
+}

@@ -1,0 +1,33 @@
+/* src/components/ProgressBar/ProgressBar.module.css */
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+.track {
+  flex: 1;
+  height: 8px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--color-primary-default);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-18);
+  color: var(--color-label-secondary);
+  letter-spacing: var(--letter-spacing);
+  min-width: 36px;
+  text-align: right;
+}
