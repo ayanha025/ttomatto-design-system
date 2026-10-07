@@ -18,7 +18,7 @@ export interface SelectOption {
 
 export interface SelectFieldProps {
   label?: string
-  /** 라벨 옆에 (Optional) 표시 */
+  /** 라벨 옆에 (선택) 표시 */
   optional?: boolean
   required?: boolean
   size?: 'medium' | 'large'

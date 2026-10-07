@@ -9,7 +9,7 @@ import field from '../shared/Field.module.css'
 
 export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
-  /** 라벨 옆에 (Optional) 표시 */
+  /** 라벨 옆에 (선택) 표시 */
   optional?: boolean
   size?: 'medium' | 'large'
   error?: boolean

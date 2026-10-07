@@ -13,7 +13,7 @@ export function FieldLabel({ required, optional, className, children, ...rest }:
     <label className={cx(styles.label, className)} {...rest}>
       {children}
       {required && <span className={styles.required} aria-hidden="true">*</span>}
-      {optional && !required && <span className={styles.optional}>(Optional)</span>}
+      {optional && !required && <span className={styles.optional}>(선택)</span>}
     </label>
   )
 }

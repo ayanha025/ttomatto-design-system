@@ -10,7 +10,7 @@ import styles from './TextArea.module.css'
 
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string
-  /** 라벨 옆에 (Optional) 표시 */
+  /** 라벨 옆에 (선택) 표시 */
   optional?: boolean
   error?: boolean
   success?: boolean
