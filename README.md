@@ -149,9 +149,10 @@ toast.dismiss()  // 모두 닫기
 
 ### Next.js를 쓰는 경우
 
-별도 수정 없이 App Router에서 그대로 사용할 수 있습니다. (Next.js 15 · React 18에서 빌드·서버 렌더링 확인)
+별도 수정 없이 App Router에서 그대로 사용할 수 있습니다. (Next.js 15 · React 18에서 전체 컴포넌트의 빌드·서버 렌더링·브라우저 동작 확인)
 
 - **`'use client'`**: 상태·이벤트를 가진 컴포넌트(TextField, TextArea, Checkbox, SearchField, SelectField, Chip, Modal, BottomSheet, BottomNavigation)에는 이미 들어 있습니다. Button, ButtonStack, Icon, Option, Radio, ProgressBar, Toast는 서버 컴포넌트에서도 바로 쓸 수 있습니다.
+- **지원 브라우저**: iOS Safari 14.1 이상, Chrome·Edge 84 이상. BottomNavigation의 반투명·흐림 배경은 지원하지 않는 브라우저에서 불투명한 흰 배경으로 바뀌고, 선택 배경은 `bg-selected` 색으로 대신 표시됩니다.
 - **Modal · BottomSheet**: 서버 렌더링 중에는 그리지 않고, 브라우저에 마운트된 뒤 portal로 그립니다. `isOpen={true}`로 시작해도 됩니다.
 - **Toast 아이콘**: SVG import가 문자열(Vite)이든 `{ src }` 객체(Next.js)든 모두 처리합니다. 단, SVGR처럼 SVG를 React 컴포넌트로 바꾸는 로더를 설정한 프로젝트라면 `Toast/assets`의 SVG는 URL로 불러오도록 예외 처리가 필요합니다.
 

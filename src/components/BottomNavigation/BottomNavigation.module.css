@@ -11,10 +11,18 @@
   border-top: 1px solid var(--color-base-white);
   border-radius: var(--radius-full);
   /* Figma BottomNav 고유 값: 흰색 80% + 배경 흐림 4px + 그림자 0 0 12px 10% */
+  background-color: var(--color-bg-primary); /* color-mix 미지원 브라우저: 불투명 흰색 */
   background-color: color-mix(in srgb, var(--color-bg-primary) 80%, transparent);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 배경 흐림 미지원 브라우저: 뒤 내용이 비쳐 글자가 겹치지 않도록 불투명하게 */
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .nav {
+    background-color: var(--color-bg-primary);
+  }
 }
 
 .item {
@@ -34,6 +42,7 @@
 }
 
 .selected {
+  background-color: var(--color-bg-selected); /* color-mix 미지원 브라우저: 가장 가까운 선택 배경 */
   background-color: color-mix(in srgb, var(--color-primary-default) 5%, transparent);
   color: var(--color-primary-default);
 }

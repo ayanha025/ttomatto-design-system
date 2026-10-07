@@ -71,7 +71,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
           )}
         </div>
       )}
-      <div className={cx(field.box, field.large, styles.box, error && field.invalid, disabled && field.disabled)}>
+      <div className={cx(field.box, field.large, styles.box, error && field.invalid, disabled && field.disabled, disabled && styles.disabled)}>
         <textarea
           ref={ref}
           id={inputId}

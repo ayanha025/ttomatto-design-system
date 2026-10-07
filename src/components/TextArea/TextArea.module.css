@@ -47,7 +47,7 @@
   pointer-events: none;
 }
 
-.box:has(textarea:disabled) .grabber {
+.disabled .grabber {
   background-color: var(--color-bg-disabled);
   color: var(--color-label-disabled);
 }
