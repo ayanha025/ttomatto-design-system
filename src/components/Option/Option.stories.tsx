@@ -7,9 +7,6 @@ import { OptionGroup } from './OptionGroup'
 const meta: Meta<typeof Option> = {
   title: 'Components/Option',
   component: Option,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-3811' },
-  },
   argTypes: {
     type: { control: 'select', options: ['check', 'radio', 'text', 'text2'] },
     label: { control: 'text' },

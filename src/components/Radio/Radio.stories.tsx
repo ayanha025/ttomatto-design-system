@@ -6,9 +6,6 @@ import { Radio } from './Radio'
 const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',
   component: Radio,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=116-322' },
-  },
   argTypes: {
     checked: { control: 'boolean' },
     disabled: { control: 'boolean' },

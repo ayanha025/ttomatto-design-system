@@ -198,12 +198,6 @@ npm run chromatic      # 수동 배포가 필요할 때만 (CHROMATIC_PROJECT_TO
 
 main에 push하거나 PR을 만들면 GitHub Actions(`.github/workflows/chromatic.yml`)가 Storybook을 Chromatic에 자동 배포합니다. 토큰은 저장소 Secrets의 `CHROMATIC_PROJECT_TOKEN`에 들어 있습니다.
 
-## Figma ↔ 코드 연결
-
-- **Storybook → Figma**: 각 컴포넌트 화면 아래 **Design** 탭에 해당 Figma 컴포넌트가 보입니다. (Figma에 로그인하고 파일 권한이 있어야 표시됨)
-- **Figma → 코드**: Figma에서 컴포넌트를 선택하면 설명란에 코드 폴더 위치와 Storybook 링크가 있습니다.
-- Figma 원본: https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System
-
 ## 작업 흐름 예시: 메인 컬러 변경
 
 1. `src/tokens/color.json`에서 `semantic.primary` 값을 수정 (예: red-600 → orange-600)

@@ -6,9 +6,6 @@ import { Checkbox } from './Checkbox'
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=113-365' },
-  },
   argTypes: {
     checked: { control: 'boolean' },
     disabled: { control: 'boolean' },

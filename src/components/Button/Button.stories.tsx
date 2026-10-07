@@ -5,9 +5,6 @@ import { Button } from './Button'
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=103-554' },
-  },
   argTypes: {
     variant: {
       control: 'select',

@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3",
-    "@storybook/addon-designs": "^8.2.1",
     "@storybook/addon-essentials": "^8",
     "@storybook/addon-interactions": "^8",
     "@storybook/addon-onboarding": "^8",

@@ -6,9 +6,6 @@ import { Button } from '../Button'
 const meta: Meta<typeof ButtonStack> = {
   title: 'Components/ButtonStack',
   component: ButtonStack,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5017-1695' },
-  },
   argTypes: {
     direction: { control: 'select', options: ['horizontal', 'vertical'] },
     padded: { control: 'boolean' },

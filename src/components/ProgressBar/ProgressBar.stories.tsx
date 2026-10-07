@@ -5,9 +5,6 @@ import { ProgressBar } from './ProgressBar'
 const meta: Meta<typeof ProgressBar> = {
   title: 'Components/ProgressBar',
   component: ProgressBar,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-3359' },
-  },
   argTypes: {
     value: { control: { type: 'range', min: 0, max: 100 } },
     showLabel: { control: 'boolean' },

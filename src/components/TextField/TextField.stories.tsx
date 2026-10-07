@@ -5,9 +5,6 @@ import { TextField } from './TextField'
 const meta: Meta<typeof TextField> = {
   title: 'Components/TextField',
   component: TextField,
-  parameters: {
-    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-2872' },
-  },
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },
