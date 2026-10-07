@@ -6,6 +6,9 @@ import { BottomNavigation } from './BottomNavigation'
 const meta: Meta<typeof BottomNavigation> = {
   title: 'Components/BottomNavigation',
   component: BottomNavigation,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5017-1714' },
+  },
 }
 
 export default meta

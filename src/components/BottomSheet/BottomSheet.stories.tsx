@@ -7,6 +7,9 @@ import { Button } from '../Button'
 const meta: Meta<typeof BottomSheet> = {
   title: 'Components/BottomSheet',
   component: BottomSheet,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-2778' },
+  },
 }
 
 export default meta

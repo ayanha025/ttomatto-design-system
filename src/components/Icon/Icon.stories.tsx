@@ -7,6 +7,9 @@ const names = Object.keys(icons) as IconName[]
 const meta: Meta<typeof Icon> = {
   title: 'Foundations/Icon',
   component: Icon,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5017-1880' },
+  },
   argTypes: {
     name: { control: 'select', options: names },
     size: { control: 'select', options: [16, 20, 24] },

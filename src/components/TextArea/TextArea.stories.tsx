@@ -5,6 +5,9 @@ import { TextArea } from './TextArea'
 const meta: Meta<typeof TextArea> = {
   title: 'Components/TextArea',
   component: TextArea,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-2968' },
+  },
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },

@@ -7,6 +7,9 @@ import { Button } from '../Button'
 const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-2718' },
+  },
 }
 
 export default meta

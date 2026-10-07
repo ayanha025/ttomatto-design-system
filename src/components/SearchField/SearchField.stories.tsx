@@ -5,6 +5,9 @@ import { SearchField } from './SearchField'
 const meta: Meta<typeof SearchField> = {
   title: 'Components/SearchField',
   component: SearchField,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-4187' },
+  },
   argTypes: {
     label: { control: 'text' },
     size: { control: 'select', options: ['medium', 'large'] },

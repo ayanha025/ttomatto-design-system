@@ -14,6 +14,9 @@ const sampleOptions = [
 const meta: Meta<typeof SelectField> = {
   title: 'Components/SelectField',
   component: SelectField,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-4072' },
+  },
   argTypes: {
     size: { control: 'select', options: ['medium', 'large'] },
   },

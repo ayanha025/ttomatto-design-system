@@ -6,6 +6,9 @@ import { Chip } from './Chip'
 const meta: Meta<typeof Chip> = {
   title: 'Components/Chip',
   component: Chip,
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/AJQYSwTbm9nWWlonDl8WXR/TMT---Design-System?node-id=5001-3042' },
+  },
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     leftIcon: { control: 'select', options: [undefined, 'star', 'heart', 'map-pin', 'clock'] },
