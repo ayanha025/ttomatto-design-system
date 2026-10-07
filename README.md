@@ -35,10 +35,11 @@ Storybook → Chromatic 배포
 | 파일 | 내용 | CSS 변수 예시 |
 |---|---|---|
 | `color.json` | **Primitive**: neutral, red, orange, yellow, green, blue (50–900), error (50·500–800)<br>**Semantic**: label, bg, border, state, primary/secondary/tertiary, transparent(20·84) | `--color-red-600`<br>`--color-primary-default` |
-| `typography.json` | Pretendard / 굵기 400·500·700 / 크기 12–28px / 텍스트 스타일(heading, body) | `--font-size-16`<br>`--font-weight-bold` |
+| `typography.json` | Pretendard / 굵기 400·500·600·700 / 크기 10–28px / 텍스트 스타일(heading, body) | `--font-size-16`<br>`--font-weight-bold` |
 | `spacing.json` | 0–64px 스케일 | `--spacing-16` |
 | `radius.json` | xs(4) · sm(8) · md(12) · lg(16) · xl(20) · full | `--radius-md` |
-| `shadow.json` | sm · md · lg · toast | `--shadow-md` |
+| `shadow.json` | raised(카드) · floating(바텀시트·드롭다운) · toast · modal | `--shadow-floating` |
+| `grid.json` | 모바일 그리드 (320–430px, 4칼럼 · 거터 16 · 마진 20) | `--grid-mobile-columns` |
 
 컬러는 **Primitive → Semantic** 2단계 구조입니다. 컴포넌트는 Semantic 토큰(`primary`, `label`, `bg` 등)만 사용하므로, 브랜드 컬러를 바꿀 때 Semantic 값만 수정하면 됩니다.
 
@@ -46,27 +47,32 @@ Storybook → Chromatic 배포
 
 | 컴포넌트 | 주요 옵션 |
 |---|---|
-| **Button** | `variant`: primary · secondary · tertiary / `size`: small · medium · large / `disabled` |
-| **TextField** | `label`, `placeholder`, `error`, `helperText`, `disabled` |
-| **SelectField** | `options`, `placeholder`, `error`, `helperText`, `disabled` |
-| **SearchField** | `placeholder`, 클리어 버튼(`onClear`), `disabled` |
+| **Icon** | `name`(아이콘 50종), `size`, `label` — 색은 `color`(currentColor)로 지정 |
+| **Button** | `variant`: primary · secondary · tertiary / `size`: small(36) · medium(44) · large(48) / `leftIcon`, `rightIcon`, `loading`, `disabled` |
+| **ButtonStack** | `direction`: horizontal · vertical / `padded`(화면 하단용 여백) |
+| **TextField** | `label`, `required`, `optional`, `size`: medium · large / `rightIcon`, `error`, `success`, `helperText`, `disabled` |
+| **TextArea** | `label`, `maxLength` + `showCount`(글자 수), `error`, `success`, `helperText`, `disabled` |
+| **SelectField** | `options`, `size`: medium · large / `required`, `optional`, `error`, `helperText`, `disabled` |
+| **SearchField** | `label`, `size`: medium · large / 클리어 버튼(`onClear`), `error`, `helperText`, `disabled` |
 | **Checkbox** | `checked`, `label`, `disabled` |
 | **Radio** | `checked`, `label`, `name`, `value`, `disabled` |
-| **Chip** | `variant`: filled · outlined / `selected`, 삭제(`onClose`), `disabled` |
+| **Option** · **OptionGroup** | `type`: check · radio · text · text2 / `label`, `subText`, `selected`, `disabled` — 목록은 `OptionGroup`(`maxHeight`)으로 감쌈 |
+| **Chip** | `size`: small · medium · large / `leftIcon`, `selected`, 삭제(`onClose`), `disabled` |
 | **ProgressBar** | `value`(0–100), `showLabel` |
 | **Toast** | `type`: success · warning · error / `message`, `description`(서브 텍스트), `icon` — 화면에 띄울 때는 `toast.success()` 등 사용 (아래 참고) |
-| **Modal** | `isOpen`, `title`, `footer`, `onClose` |
+| **Modal** | `isOpen`, `title`(있으면 헤더와 닫기 버튼 표시), `footer`, `onClose` |
 | **BottomSheet** | `isOpen`, `title`, `footer`, `onClose` |
+| **BottomNavigation** | `value`, `onChange`, `items`(기본: 홈·피드·그룹·마이), 가운데 + 버튼(`onFabClick`) |
 
 ### 공통 규칙
 
 - 모든 컴포넌트는 `className`을 받아 루트 요소에 덧붙입니다. (Modal·BottomSheet는 패널에 적용)
 - Modal·BottomSheet를 제외한 컴포넌트는 `ref`를 전달할 수 있습니다.
-- Button, TextField, SearchField, Checkbox, Radio, Chip, ProgressBar, Toast는 해당 HTML 요소의 기본 속성(`type`, `name`, `aria-*`, `onBlur` 등)을 그대로 받습니다.
+- Button, TextField, TextArea, SearchField, Checkbox, Radio, Chip, Option, ProgressBar, Toast는 해당 HTML 요소의 기본 속성(`type`, `name`, `aria-*`, `onBlur` 등)을 그대로 받습니다.
 - Button의 기본 `type`은 `button`입니다. 폼 제출에는 `type="submit"`을 지정하세요.
 - 입력 컴포넌트는 제어(`value`/`checked`)와 비제어(`defaultValue`/`defaultChecked`) 방식을 모두 지원합니다. Radio는 제어 방식만 지원합니다.
 - `onChange` 형태:
-  - TextField, SearchField, Checkbox, Radio → 네이티브 이벤트 (`e.target.value`, `e.target.checked`). react-hook-form의 `register()`와 바로 연결됩니다.
+  - TextField, TextArea, SearchField, Checkbox, Radio → 네이티브 이벤트 (`e.target.value`, `e.target.checked`). react-hook-form의 `register()`와 바로 연결됩니다.
   - SelectField → 선택된 값(`string`)
 - SearchField를 제어 방식으로 쓸 때는 `onClear`에서 값을 직접 비워야 합니다.
 
@@ -145,7 +151,7 @@ toast.dismiss()  // 모두 닫기
 
 별도 수정 없이 App Router에서 그대로 사용할 수 있습니다. (Next.js 15 · React 18에서 빌드·서버 렌더링 확인)
 
-- **`'use client'`**: 상태·이벤트를 가진 컴포넌트(TextField, Checkbox, SearchField, SelectField, Chip, Modal, BottomSheet)에는 이미 들어 있습니다. Button, Radio, ProgressBar, Toast는 서버 컴포넌트에서도 바로 쓸 수 있습니다.
+- **`'use client'`**: 상태·이벤트를 가진 컴포넌트(TextField, TextArea, Checkbox, SearchField, SelectField, Chip, Modal, BottomSheet, BottomNavigation)에는 이미 들어 있습니다. Button, ButtonStack, Icon, Option, Radio, ProgressBar, Toast는 서버 컴포넌트에서도 바로 쓸 수 있습니다.
 - **Modal · BottomSheet**: 서버 렌더링 중에는 그리지 않고, 브라우저에 마운트된 뒤 portal로 그립니다. `isOpen={true}`로 시작해도 됩니다.
 - **Toast 아이콘**: SVG import가 문자열(Vite)이든 `{ src }` 객체(Next.js)든 모두 처리합니다. 단, SVGR처럼 SVG를 React 컴포넌트로 바꾸는 로더를 설정한 프로젝트라면 `Toast/assets`의 SVG는 URL로 불러오도록 예외 처리가 필요합니다.
 
@@ -171,7 +177,7 @@ src/
 │   └── tokens.css       # 자동 생성 (직접 수정 X)
 ├── docs/                # Storybook 문서 페이지 (Introduction, Foundations) — 서비스에 복사하지 않음
 └── components/
-    ├── shared/          # 공통 도구: cx(className 조합), useControllableState, useDialog, CloseIcon
+    ├── shared/          # 공통 도구: cx(className 조합), useControllableState, useDialog, Field(라벨·도움말·입력 상자), DialogHeader
     └── Button/
         ├── Button.tsx
         ├── Button.module.css

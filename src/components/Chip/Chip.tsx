@@ -3,21 +3,23 @@
 // src/components/Chip/Chip.tsx
 import { forwardRef } from 'react'
 import { cx } from '../shared/cx'
-import { CloseIcon } from '../shared/CloseIcon'
+import { Icon, type IconName } from '../Icon'
 import styles from './Chip.module.css'
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'filled' | 'outlined'
+  size?: 'small' | 'medium' | 'large'
+  leftIcon?: IconName
   selected?: boolean
   disabled?: boolean
   onClose?: () => void
 }
 
 export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
-  { variant = 'filled', selected = false, disabled = false, onClose, onClick, onKeyDown, className, children, ...rest },
+  { size = 'large', leftIcon, selected = false, disabled = false, onClose, onClick, onKeyDown, className, children, ...rest },
   ref,
 ) {
   const clickable = Boolean(onClick)
+  const iconSize = size === 'large' ? 20 : 16
 
   // 클릭 가능한 칩은 버튼처럼 Enter/Space로도 동작
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -38,7 +40,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
       onKeyDown={handleKeyDown}
       className={cx(
         styles.chip,
-        styles[variant],
+        styles[size],
         selected && styles.selected,
         clickable && styles.clickable,
         disabled && styles.disabled,
@@ -48,15 +50,17 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
       aria-disabled={disabled || undefined}
       {...rest}
     >
+      {leftIcon && <Icon name={leftIcon} size={iconSize} />}
       <span className={styles.label}>{children}</span>
-      {onClose && !disabled && (
+      {onClose && (
         <button
           className={styles.closeButton}
           type="button"
           aria-label="삭제"
+          disabled={disabled}
           onClick={(e) => { e.stopPropagation(); onClose(); }}
         >
-          <CloseIcon size={14} />
+          <Icon name="cancel" size={iconSize} />
         </button>
       )}
     </div>

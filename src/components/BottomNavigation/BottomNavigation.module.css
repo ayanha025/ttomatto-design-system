@@ -1,0 +1,80 @@
+/* src/components/BottomNavigation/BottomNavigation.module.css */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 320px;
+  height: 60px;
+  padding: var(--spacing-4) var(--spacing-12);
+  border-top: 1px solid var(--color-base-white);
+  border-radius: var(--radius-full);
+  /* Figma BottomNav 고유 값: 흰색 80% + 배경 흐림 4px + 그림자 0 0 12px 10% */
+  background-color: color-mix(in srgb, var(--color-bg-primary) 80%, transparent);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  box-sizing: border-box;
+  width: 59px;
+  height: 52px;
+  padding: 6px 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: none;
+  color: var(--color-label-tertiary);
+  cursor: pointer;
+}
+
+.selected {
+  background-color: color-mix(in srgb, var(--color-primary-default) 5%, transparent);
+  color: var(--color-primary-default);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--letter-spacing);
+  white-space: nowrap;
+}
+
+.selected .label {
+  font-weight: var(--font-weight-semibold);
+}
+
+.fabWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 59px;
+  height: 52px;
+}
+
+.fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-100);
+  cursor: pointer;
+}
+
+.item:focus-visible,
+.fab:focus-visible {
+  outline: 2px solid var(--color-label-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,32 @@
+/* src/components/ButtonStack/ButtonStack.module.css */
+.stack {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.horizontal > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.vertical {
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-12);
+}
+
+.vertical > * {
+  width: 100%;
+}
+
+.padded {
+  padding: var(--spacing-12) var(--spacing-20) var(--spacing-32);
+  background-color: var(--color-bg-primary);
+}

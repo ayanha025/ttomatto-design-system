@@ -11,72 +11,43 @@
 
 .sheet {
   background-color: var(--color-bg-primary);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow-floating);
   width: 100%;
-  max-width: 480px;
-  max-height: 80vh;
+  max-width: 360px;
+  max-height: 700px;
+  max-height: min(700px, 90vh);
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-12);
+  overflow: hidden;
+}
+
+.handleArea {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-12) 10px;
+  flex-shrink: 0;
 }
 
 .handle {
   width: 36px;
   height: 4px;
-  background-color: var(--color-border-primary);
+  background-color: var(--color-neutral-500);
   border-radius: var(--radius-full);
-  margin: var(--spacing-8) auto var(--spacing-4);
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-12) var(--spacing-20);
-}
-
-.title {
-  font-family: var(--font-family);
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-26);
-  color: var(--color-label-primary);
-  letter-spacing: var(--letter-spacing);
-  margin: 0;
-}
-
-.closeButton {
-  display: flex;
-  align-items: center;
-  background: none;
-  border: none;
-  padding: var(--spacing-4);
-  cursor: pointer;
-  color: var(--color-label-tertiary);
-  border-radius: var(--radius-xs);
-}
-
-.closeButton:hover {
-  background-color: var(--color-bg-secondary);
 }
 
 .body {
-  padding: var(--spacing-4) var(--spacing-20) var(--spacing-16);
+  flex: 1;
+  min-height: 0;
+  padding: 0 var(--spacing-20);
   overflow-y: auto;
   font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-24);
   color: var(--color-label-secondary);
   letter-spacing: var(--letter-spacing);
-}
-
-.footer {
-  display: flex;
-  gap: var(--spacing-8);
-  padding: var(--spacing-12) var(--spacing-20) var(--spacing-20);
-}
-
-.footer > * {
-  flex: 1;
 }
 
 .sheet:focus {

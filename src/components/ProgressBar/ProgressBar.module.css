@@ -8,7 +8,7 @@
 
 .track {
   flex: 1;
-  height: 8px;
+  height: 4px;
   background-color: var(--color-bg-tertiary);
   border-radius: var(--radius-full);
   overflow: hidden;

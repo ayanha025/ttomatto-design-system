@@ -3,70 +3,113 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-4);
-  padding: var(--spacing-4) var(--spacing-12);
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-full);
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  background-color: var(--color-bg-primary);
+  color: var(--color-label-primary);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   cursor: default;
 }
 
-.clickable {
-  cursor: pointer;
+/* Sizes */
+.large {
+  height: 36px;
+  padding: var(--spacing-8) var(--spacing-12);
 }
 
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
+.medium {
+  height: 28px;
+  padding: var(--spacing-4) var(--spacing-12);
+}
+
+.small {
+  height: 26px;
+  padding: var(--spacing-4) var(--spacing-12);
 }
 
 .label {
   font-family: var(--font-family);
-  font-size: var(--font-size-12);
+  font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-18);
+  line-height: var(--line-height-20);
   letter-spacing: var(--letter-spacing);
+  white-space: nowrap;
 }
 
-.filled {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-label-primary);
+.small .label {
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-18);
 }
 
-.filled:hover {
-  background-color: var(--color-bg-tertiary);
+/* States */
+.clickable {
+  cursor: pointer;
 }
 
-.filled.selected {
-  background-color: var(--color-primary-default);
-  color: var(--color-label-inverse);
+.clickable:hover {
+  background-color: var(--color-tertiary-default);
+  border-color: var(--color-border-interactive-primary-hovered);
+  color: var(--color-label-secondary);
 }
 
-.outlined {
-  background-color: transparent;
-  border: 1px solid var(--color-border-primary);
-  color: var(--color-label-primary);
+.clickable:active {
+  background-color: var(--color-tertiary-hovered);
+  border-color: var(--color-border-interactive-primary-pressed);
+  color: var(--color-label-tertiary);
 }
 
-.outlined:hover {
-  background-color: var(--color-bg-secondary);
-}
-
-.outlined.selected {
+.selected,
+.selected.clickable:hover,
+.selected.clickable:active {
+  background-color: var(--color-bg-selected);
   border-color: var(--color-primary-default);
   color: var(--color-primary-default);
+}
+
+.selected.clickable:hover {
+  background-color: var(--color-bg-selected-hovered);
+  border-color: var(--color-primary-hovered);
+  color: var(--color-primary-hovered);
+}
+
+.selected.clickable:active {
+  background-color: var(--color-bg-selected-pressed);
+  border-color: var(--color-primary-pressed);
+  color: var(--color-primary-pressed);
+}
+
+.disabled,
+.disabled.clickable:hover,
+.disabled.clickable:active {
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-border-disabled);
+  color: var(--color-label-disabled);
+  cursor: not-allowed;
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--color-label-primary);
+  outline-offset: 2px;
 }
 
 .closeButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  border: none;
   padding: 0;
-  cursor: pointer;
+  border: none;
+  background: none;
   color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-full);
 }
 
-.chip:focus-visible {
-  outline: 2px solid var(--color-border-interactive-primary);
-  outline-offset: 2px;
+.closeButton:disabled {
+  cursor: not-allowed;
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-label-primary);
+  outline-offset: 1px;
 }

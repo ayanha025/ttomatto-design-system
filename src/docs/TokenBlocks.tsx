@@ -7,6 +7,7 @@ import typography from '../tokens/typography.json'
 import spacing from '../tokens/spacing.json'
 import radius from '../tokens/radius.json'
 import shadow from '../tokens/shadow.json'
+import grid from '../tokens/grid.json'
 import styles from './TokenBlocks.module.css'
 
 // build-tokens.js와 같은 규칙으로 CSS 변수 이름을 만든다
@@ -203,17 +204,25 @@ export function RadiusScale() {
   )
 }
 
+const shadowUsage: Record<string, string> = {
+  raised: '리뷰 카드 · 가게 카드 · 그룹 카드',
+  floating: '바텀시트 · 드롭다운',
+  toast: '토스트 · 스낵바',
+  modal: '모달 · 다이얼로그',
+}
+
 export function ShadowScale() {
   return (
     <table className={styles.table}>
       <thead>
-        <tr><th>CSS 변수</th><th>값</th><th>모양</th></tr>
+        <tr><th>CSS 변수</th><th>값</th><th>사용처</th><th>모양</th></tr>
       </thead>
       <tbody>
         {Object.entries(shadow).map(([name, value]) => (
           <tr key={name}>
             <td><span className={styles.code}>--shadow-{name}</span></td>
             <td><span className={styles.code}>{value}</span></td>
+            <td>{shadowUsage[name]}</td>
             <td>
               <div className={styles.shadowStage}>
                 <div className={styles.shadowBox} style={{ boxShadow: `var(--shadow-${name})` }} />
@@ -223,6 +232,42 @@ export function ShadowScale() {
         ))}
       </tbody>
     </table>
+  )
+}
+
+export function LayoutGrid() {
+  return (
+    <>
+      <table className={styles.table}>
+        <thead>
+          <tr><th>그리드</th><th>화면 너비</th><th>칼럼</th><th>거터</th><th>마진</th><th>CSS 변수</th></tr>
+        </thead>
+        <tbody>
+          {Object.entries(grid).map(([name, g]) => (
+            <tr key={name}>
+              <td>{name}</td>
+              <td>{g.breakpoint}</td>
+              <td>{g.columns}</td>
+              <td>{g.gutter}</td>
+              <td>{g.margin}</td>
+              <td>
+                <span className={styles.code}>--grid-{name}-columns</span>{' '}
+                <span className={styles.code}>--grid-{name}-gutter</span>{' '}
+                <span className={styles.code}>--grid-{name}-margin</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className={styles.gridStage}>
+        <div className={styles.gridColumns}>
+          {Array.from({ length: grid.mobile.columns }, (_, i) => <div key={i} className={styles.gridColumn} />)}
+        </div>
+        <p className={styles.gridCaption}>
+          {grid.mobile.columns} columns · {grid.mobile.gutter} gutter · {grid.mobile.margin} margin
+        </p>
+      </div>
+    </>
   )
 }
 

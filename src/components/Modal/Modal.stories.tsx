@@ -12,7 +12,28 @@ const meta: Meta<typeof Modal> = {
 export default meta
 type Story = StoryObj<typeof Modal>
 
+export const InformationOnly: Story = {
+  name: 'Information only',
+  render: function Render() {
+    const [isOpen, setIsOpen] = useState(false)
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)}>모달 열기</Button>
+        <Modal
+          isOpen={isOpen}
+          aria-label="저장 완료"
+          onClose={() => setIsOpen(false)}
+          footer={<Button size="large" onClick={() => setIsOpen(false)}>확인</Button>}
+        >
+          <p style={{ margin: 0 }}>저장이 완료되었습니다.</p>
+        </Modal>
+      </>
+    )
+  },
+}
+
 export const Default: Story = {
+  name: 'With header',
   render: function Render() {
     const [isOpen, setIsOpen] = useState(false)
     return (
@@ -24,8 +45,8 @@ export const Default: Story = {
           onClose={() => setIsOpen(false)}
           footer={
             <>
-              <Button variant="tertiary" onClick={() => setIsOpen(false)}>취소</Button>
-              <Button variant="primary" onClick={() => setIsOpen(false)}>확인</Button>
+              <Button variant="tertiary" size="large" onClick={() => setIsOpen(false)}>취소</Button>
+              <Button variant="primary" size="large" onClick={() => setIsOpen(false)}>확인</Button>
             </>
           }
         >
@@ -47,7 +68,7 @@ export const WithLongContent: Story = {
           title="서비스 이용약관"
           onClose={() => setIsOpen(false)}
           footer={
-            <Button variant="primary" onClick={() => setIsOpen(false)}>동의</Button>
+            <Button variant="primary" size="large" onClick={() => setIsOpen(false)}>동의</Button>
           }
         >
           {Array.from({ length: 10 }, (_, i) => (

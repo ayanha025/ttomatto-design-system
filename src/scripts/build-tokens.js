@@ -15,6 +15,7 @@ const typography = JSON.parse(readFileSync(resolve(tokensDir, 'typography.json')
 const spacing = JSON.parse(readFileSync(resolve(tokensDir, 'spacing.json'), 'utf-8'));
 const radius = JSON.parse(readFileSync(resolve(tokensDir, 'radius.json'), 'utf-8'));
 const shadow = JSON.parse(readFileSync(resolve(tokensDir, 'shadow.json'), 'utf-8'));
+const grid = JSON.parse(readFileSync(resolve(tokensDir, 'grid.json'), 'utf-8'));
 
 const lines = [];
 
@@ -90,6 +91,16 @@ lines.push('');
 lines.push('  /* Shadow */');
 for (const [name, value] of Object.entries(shadow)) {
   lines.push(`  --shadow-${name}: ${value};`);
+}
+
+lines.push('');
+
+// === Layout Grid ===
+lines.push('  /* Layout Grid */');
+for (const [name, { columns, gutter, margin }] of Object.entries(grid)) {
+  lines.push(`  --grid-${name}-columns: ${columns};`);
+  lines.push(`  --grid-${name}-gutter: ${gutter};`);
+  lines.push(`  --grid-${name}-margin: ${margin};`);
 }
 
 lines.push('}');

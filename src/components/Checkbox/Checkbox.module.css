@@ -8,7 +8,6 @@
 
 .wrapper.disabled {
   cursor: not-allowed;
-  opacity: 0.4;
 }
 
 .hiddenInput {
@@ -19,41 +18,67 @@
 }
 
 .checkbox {
-  width: 20px;
-  height: 20px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
   border: 2px solid var(--color-border-interactive-primary);
   border-radius: var(--radius-xs);
+  background-color: var(--color-bg-primary);
+  color: var(--color-label-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.checkbox:hover {
+.wrapper:hover .checkbox {
   border-color: var(--color-border-interactive-primary-hovered);
 }
 
-.checked {
-  background-color: var(--color-primary-default);
-  border-color: var(--color-primary-default);
+.wrapper:active .checkbox {
+  border-color: var(--color-border-interactive-primary-pressed);
 }
 
-.checked:hover {
+.checked,
+.wrapper:hover .checked,
+.wrapper:active .checked {
+  border: none;
+  background-color: var(--color-primary-default);
+}
+
+.wrapper:hover .checked {
   background-color: var(--color-primary-hovered);
-  border-color: var(--color-primary-hovered);
+}
+
+.wrapper:active .checked {
+  background-color: var(--color-primary-pressed);
+}
+
+.wrapper.disabled .checkbox {
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-border-disabled);
+}
+
+.wrapper.disabled .checked {
+  color: var(--color-label-disabled);
 }
 
 .label {
   font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-20);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-24);
   color: var(--color-label-primary);
   letter-spacing: var(--letter-spacing);
 }
 
+.wrapper.disabled .label {
+  color: var(--color-label-disabled);
+}
+
 /* 키보드 포커스 표시: 숨긴 input 다음에 오는 시각 요소에 링 표시 */
 .hiddenInput:focus-visible + .checkbox {
-  outline: 2px solid var(--color-border-interactive-primary);
+  outline: 2px solid var(--color-label-primary);
   outline-offset: 2px;
 }

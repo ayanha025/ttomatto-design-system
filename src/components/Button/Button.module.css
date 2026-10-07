@@ -10,11 +10,33 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-8);
 }
 
 .button:disabled {
   cursor: not-allowed;
-  opacity: 0.4;
+  background-color: var(--color-bg-disabled);
+  color: var(--color-label-disabled);
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
 }
 
 /* Variants */
@@ -42,28 +64,30 @@
 
 .tertiary {
   background-color: var(--color-tertiary-default);
-  color: var(--color-label-primary);
+  color: var(--color-label-secondary);
 }
 .tertiary:hover:not(:disabled) {
   background-color: var(--color-tertiary-hovered);
+  color: var(--color-label-tertiary);
 }
 .tertiary:active:not(:disabled) {
   background-color: var(--color-tertiary-pressed);
+  color: var(--color-label-tertiary);
 }
 
 /* Sizes */
 .small {
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
-  padding: var(--spacing-8) var(--spacing-12);
-  min-height: 34px;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  padding: var(--spacing-8) var(--spacing-16);
+  min-height: 36px;
 }
 
 .medium {
   font-size: var(--font-size-14);
   line-height: var(--line-height-20);
-  padding: var(--spacing-8) var(--spacing-16);
-  min-height: 40px;
+  padding: var(--spacing-12) var(--spacing-16);
+  min-height: 44px;
 }
 
 .large {

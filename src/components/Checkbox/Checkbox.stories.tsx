@@ -34,7 +34,7 @@ export const AllStates: Story = {
     const [checked1, setChecked1] = useState(false)
     const [checked2, setChecked2] = useState(true)
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <Checkbox label="미선택" checked={checked1} onChange={(e) => setChecked1(e.target.checked)} />
         <Checkbox label="선택됨" checked={checked2} onChange={(e) => setChecked2(e.target.checked)} />
         <Checkbox label="비활성화 (미선택)" disabled />

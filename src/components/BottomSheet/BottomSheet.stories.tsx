@@ -24,8 +24,8 @@ export const Default: Story = {
           onClose={() => setIsOpen(false)}
           footer={
             <>
-              <Button variant="tertiary" onClick={() => setIsOpen(false)}>취소</Button>
-              <Button variant="primary" onClick={() => setIsOpen(false)}>확인</Button>
+              <Button variant="tertiary" size="large" onClick={() => setIsOpen(false)}>취소</Button>
+              <Button variant="primary" size="large" onClick={() => setIsOpen(false)}>확인</Button>
             </>
           }
         >

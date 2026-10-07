@@ -14,6 +14,9 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['small', 'medium', 'large'],
     },
+    leftIcon: { control: 'select', options: [undefined, 'plus', 'search', 'heart', 'check'] },
+    rightIcon: { control: 'select', options: [undefined, 'chevron-right', 'chevron-down', 'plus'] },
+    loading: { control: 'boolean' },
     disabled: { control: 'boolean' },
     children: { control: 'text' },
   },
@@ -60,6 +63,18 @@ export const Tertiary: Story = {
       <Button variant="tertiary" size="medium">Medium</Button>
       <Button variant="tertiary" size="large">Large</Button>
       <Button variant="tertiary" disabled>Disabled</Button>
+    </div>
+  ),
+}
+
+export const WithIcon: Story = {
+  name: 'Icon · Loading',
+  render: () => (
+    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+      <Button leftIcon="plus" size="large">왼쪽 아이콘</Button>
+      <Button rightIcon="chevron-right" size="large">오른쪽 아이콘</Button>
+      <Button variant="secondary" loading size="large">로딩 중</Button>
+      <Button variant="tertiary" loading>로딩 중</Button>
     </div>
   ),
 }

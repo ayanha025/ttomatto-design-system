@@ -4,6 +4,7 @@
 import { forwardRef } from 'react'
 import { cx } from '../shared/cx'
 import { useControllableState } from '../shared/useControllableState'
+import { Icon } from '../Icon'
 import styles from './Checkbox.module.css'
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -33,17 +34,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         {...rest}
       />
       <div aria-hidden="true" className={cx(styles.checkbox, isChecked && styles.checked)}>
-        {isChecked && (
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path
-              d="M2.5 6L5 8.5L9.5 3.5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
+        {isChecked && <Icon name="check-bold" size={12} />}
       </div>
       {label && <span className={styles.label}>{label}</span>}
     </label>

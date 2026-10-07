@@ -5,7 +5,8 @@ import { useId } from 'react'
 import { createPortal } from 'react-dom'
 import { useDialog, useIsMounted } from '../shared/useDialog'
 import { cx } from '../shared/cx'
-import { CloseIcon } from '../shared/CloseIcon'
+import { DialogHeader } from '../shared/DialogHeader'
+import { ButtonStack } from '../ButtonStack'
 import styles from './BottomSheet.module.css'
 
 export interface BottomSheetProps {
@@ -38,17 +39,12 @@ export function BottomSheet({ isOpen, title, onClose, children, footer, classNam
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.handle} aria-hidden="true" />
-        {title && (
-          <div className={styles.header}>
-            <h2 id={titleId} className={styles.title}>{title}</h2>
-            <button className={styles.closeButton} onClick={onClose} type="button" aria-label="닫기">
-              <CloseIcon size={20} />
-            </button>
-          </div>
-        )}
+        <div className={styles.handleArea} aria-hidden="true">
+          <div className={styles.handle} />
+        </div>
+        {title && <DialogHeader title={title} titleId={titleId} onClose={onClose} />}
         <div className={styles.body}>{children}</div>
-        {footer && <div className={styles.footer}>{footer}</div>}
+        {footer && <ButtonStack padded>{footer}</ButtonStack>}
       </div>
     </div>,
     document.body,

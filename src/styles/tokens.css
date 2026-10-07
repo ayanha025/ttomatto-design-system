@@ -116,7 +116,9 @@
   --font-family: Pretendard, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-size-10: 10px;
   --font-size-12: 12px;
   --font-size-14: 14px;
   --font-size-16: 16px;
@@ -157,8 +159,13 @@
   --radius-full: 9999px;
 
   /* Shadow */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-raised: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-floating: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   --shadow-toast: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  --shadow-modal: 0 4px 24px 0 rgba(0, 0, 0, 0.16);
+
+  /* Layout Grid */
+  --grid-mobile-columns: 4;
+  --grid-mobile-gutter: 16px;
+  --grid-mobile-margin: 20px;
 }

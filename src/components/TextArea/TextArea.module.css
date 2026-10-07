@@ -1,0 +1,53 @@
+/* src/components/TextArea/TextArea.module.css */
+.titleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+}
+
+.counter {
+  display: inline-flex;
+  gap: var(--spacing-4);
+  margin-left: auto;
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-20);
+  letter-spacing: var(--letter-spacing);
+  color: var(--color-label-tertiary);
+}
+
+.counterError {
+  color: var(--color-state-error);
+}
+
+.box {
+  position: relative;
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 안쪽 여백을 textarea에 줘서 기본 크기 조절 손잡이가 상자 모서리에 오게 함 */
+.textarea {
+  box-sizing: border-box;
+  min-height: 180px;
+  padding: var(--spacing-16);
+  resize: vertical;
+  white-space: pre-wrap;
+}
+
+.grabber {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-bg-primary);
+  color: var(--color-border-primary);
+  pointer-events: none;
+}
+
+.box:has(textarea:disabled) .grabber {
+  background-color: var(--color-bg-disabled);
+  color: var(--color-label-disabled);
+}

@@ -1,0 +1,179 @@
+/* src/components/Option/Option.module.css */
+
+/* Option group: 흰 패널, 항목 사이 4px */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-primary);
+  box-shadow: var(--shadow-floating);
+}
+
+/* Scrollbar: 너비 4px, 오른쪽·위아래 4px 띄움 */
+.group::-webkit-scrollbar {
+  width: 8px;
+}
+
+.group::-webkit-scrollbar-track {
+  margin: var(--spacing-4) 0;
+  border-right: 4px solid transparent;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-tertiary);
+  background-clip: padding-box;
+}
+
+.group::-webkit-scrollbar-thumb {
+  border-right: 4px solid transparent;
+  border-radius: var(--radius-full);
+  background-color: var(--color-label-secondary);
+  background-clip: padding-box;
+}
+
+/* Option */
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: var(--spacing-8) var(--spacing-12);
+  background-color: var(--color-bg-primary);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.text2 {
+  align-items: center;
+  padding: var(--spacing-12);
+}
+
+.option:hover,
+.active {
+  background-color: var(--color-tertiary-default);
+}
+
+.option:active {
+  background-color: var(--color-tertiary-hovered);
+}
+
+.selected {
+  background-color: var(--color-bg-selected);
+}
+
+.selected:hover,
+.selected.active {
+  background-color: var(--color-bg-selected-hovered);
+}
+
+.selected:active {
+  background-color: var(--color-bg-selected-pressed);
+}
+
+.disabled,
+.disabled:hover,
+.disabled:active {
+  background-color: var(--color-bg-disabled);
+  cursor: not-allowed;
+}
+
+.contents {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-4);
+  min-width: 0;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+.label {
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-24);
+  color: var(--color-label-primary);
+}
+
+.subText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  color: var(--color-label-tertiary);
+}
+
+.disabled .label,
+.disabled .subText {
+  color: var(--color-label-disabled);
+}
+
+/* 앞(뒤) 표시 영역: 16 x 24 */
+.marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 24px;
+}
+
+.checkMark {
+  color: var(--color-primary-default);
+}
+
+.disabled .checkMark {
+  color: var(--color-label-disabled);
+}
+
+.checkbox,
+.radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-label-inverse);
+}
+
+.checkbox {
+  border: 2px solid var(--color-border-interactive-primary);
+  border-radius: var(--radius-xs);
+}
+
+.radio {
+  border: 1px solid var(--color-border-interactive-primary);
+  border-radius: var(--radius-full);
+}
+
+.controlOn {
+  border: none;
+  background-color: var(--color-primary-default);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+}
+
+.disabled .checkbox,
+.disabled .radio {
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-border-disabled);
+}
+
+.disabled .controlOn {
+  color: var(--color-label-disabled);
+}
+
+.disabled .radio.controlOn {
+  background-color: var(--color-border-disabled);
+}

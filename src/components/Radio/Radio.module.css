@@ -8,7 +8,6 @@
 
 .wrapper.disabled {
   cursor: not-allowed;
-  opacity: 0.4;
 }
 
 .hiddenInput {
@@ -19,46 +18,75 @@
 }
 
 .radio {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-border-interactive-primary);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-interactive-primary);
   border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.radio:hover {
+.wrapper:hover .radio {
+  background-color: var(--color-tertiary-hovered);
   border-color: var(--color-border-interactive-primary-hovered);
 }
 
-.checked {
-  border-color: var(--color-primary-default);
+.wrapper:active .radio {
+  background-color: var(--color-tertiary-pressed);
+  border-color: var(--color-border-interactive-primary-pressed);
 }
 
-.checked:hover {
-  border-color: var(--color-primary-hovered);
+.checked,
+.wrapper:hover .checked,
+.wrapper:active .checked {
+  border: none;
+  background-color: var(--color-primary-default);
+}
+
+.wrapper:hover .checked {
+  background-color: var(--color-primary-hovered);
+}
+
+.wrapper:active .checked {
+  background-color: var(--color-primary-pressed);
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-default);
+  background-color: var(--color-bg-primary);
+}
+
+.wrapper.disabled .radio {
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-border-disabled);
+}
+
+.wrapper.disabled .checked {
+  background-color: var(--color-border-disabled);
 }
 
 .label {
   font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-20);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-24);
   color: var(--color-label-primary);
   letter-spacing: var(--letter-spacing);
 }
 
+.wrapper.disabled .label {
+  color: var(--color-label-disabled);
+}
+
 /* 키보드 포커스 표시: 숨긴 input 다음에 오는 시각 요소에 링 표시 */
 .hiddenInput:focus-visible + .radio {
-  outline: 2px solid var(--color-border-interactive-primary);
+  outline: 2px solid var(--color-label-primary);
   outline-offset: 2px;
 }

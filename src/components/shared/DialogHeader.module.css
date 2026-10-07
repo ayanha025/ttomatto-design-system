@@ -1,0 +1,39 @@
+/* src/components/shared/DialogHeader.module.css */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  height: 52px;
+  padding: 0 var(--spacing-20);
+  box-sizing: border-box;
+  background-color: var(--color-bg-primary);
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-26);
+  letter-spacing: var(--letter-spacing);
+  color: var(--color-label-primary);
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-label-primary);
+  border-radius: var(--radius-xs);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-label-primary);
+  outline-offset: 2px;
+}

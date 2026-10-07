@@ -5,7 +5,7 @@ import { useId } from 'react'
 import { createPortal } from 'react-dom'
 import { useDialog, useIsMounted } from '../shared/useDialog'
 import { cx } from '../shared/cx'
-import { CloseIcon } from '../shared/CloseIcon'
+import { DialogHeader } from '../shared/DialogHeader'
 import styles from './Modal.module.css'
 
 export interface ModalProps {
@@ -30,7 +30,7 @@ export function Modal({ isOpen, title, onClose, children, footer, className, 'ar
     <div className={styles.overlay} onClick={onClose}>
       <div
         ref={panelRef}
-        className={cx(styles.modal, className)}
+        className={cx(styles.modal, title && styles.withHeader, className)}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
@@ -38,14 +38,11 @@ export function Modal({ isOpen, title, onClose, children, footer, className, 'ar
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.header}>
-          {title && <h2 id={titleId} className={styles.title}>{title}</h2>}
-          <button className={styles.closeButton} onClick={onClose} type="button" aria-label="닫기">
-            <CloseIcon size={20} />
-          </button>
+        {title && <DialogHeader title={title} titleId={titleId} onClose={onClose} />}
+        <div className={styles.content}>
+          <div className={styles.body}>{children}</div>
+          {footer && <div className={styles.footer}>{footer}</div>}
         </div>
-        <div className={styles.body}>{children}</div>
-        {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>,
     document.body,

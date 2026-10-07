@@ -33,7 +33,7 @@ export const RadioGroup: Story = {
   render: function Render() {
     const [selected, setSelected] = useState('option1')
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <Radio
           label="옵션 1"
           name="group"

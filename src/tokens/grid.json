@@ -1,0 +1,8 @@
+{
+  "mobile": {
+    "breakpoint": "320px – 430px",
+    "columns": 4,
+    "gutter": "16px",
+    "margin": "20px"
+  }
+}

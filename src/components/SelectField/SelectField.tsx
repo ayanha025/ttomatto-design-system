@@ -4,15 +4,24 @@
 import { forwardRef, useState, useRef, useEffect, useId } from 'react'
 import { cx } from '../shared/cx'
 import { useControllableState } from '../shared/useControllableState'
+import { FieldLabel, HelpMessage } from '../shared/Field'
+import { Icon } from '../Icon'
+import { Option, OptionGroup } from '../Option'
+import field from '../shared/Field.module.css'
 import styles from './SelectField.module.css'
 
 export interface SelectOption {
   label: string
   value: string
+  disabled?: boolean
 }
 
 export interface SelectFieldProps {
   label?: string
+  /** 라벨 옆에 (Optional) 표시 */
+  optional?: boolean
+  required?: boolean
+  size?: 'medium' | 'large'
   options: SelectOption[]
   placeholder?: string
   disabled?: boolean
@@ -28,6 +37,9 @@ export interface SelectFieldProps {
 export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(function SelectField(
   {
     label,
+    optional,
+    required,
+    size = 'large',
     options,
     placeholder = '선택하세요',
     disabled = false,
@@ -51,7 +63,7 @@ export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(funct
   const helperId = `${triggerId}-helper`
   const listboxId = `${triggerId}-listbox`
   const optionId = (index: number) => `${triggerId}-option-${index}`
-  const listRef = useRef<HTMLUListElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
 
   const selectedOption = options.find(o => o.value === selectedValue)
 
@@ -78,6 +90,7 @@ export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(funct
   }
 
   const handleSelect = (optionValue: string) => {
+    if (options.find(o => o.value === optionValue)?.disabled) return
     setSelectedValue(optionValue)
     onChange?.(optionValue)
     setIsOpen(false)
@@ -127,65 +140,69 @@ export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(funct
   }
 
   return (
-    <div className={cx(styles.wrapper, className)} ref={wrapperRef}>
-      {label && <label className={styles.label} id={labelId} htmlFor={triggerId}>{label}</label>}
-      <button
-        ref={ref}
-        id={triggerId}
-        className={cx(styles.trigger, isOpen && styles.focused, error && styles.error)}
-        onClick={() => (isOpen ? setIsOpen(false) : open())}
-        onKeyDown={handleKeyDown}
-        disabled={disabled}
-        type="button"
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        aria-controls={isOpen ? listboxId : undefined}
-        aria-activedescendant={isOpen && activeIndex >= 0 ? optionId(activeIndex) : undefined}
-        aria-invalid={error || undefined}
-        aria-describedby={helperText ? helperId : undefined}
-      >
-        <span className={selectedOption ? styles.value : styles.placeholder}>
-          {selectedOption ? selectedOption.label : placeholder}
-        </span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-          className={cx(styles.arrow, isOpen && styles.arrowOpen)}
-        >
-          <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-      {isOpen && (
-        <ul ref={listRef} id={listboxId} className={styles.dropdown} role="listbox" aria-labelledby={label ? labelId : undefined}>
-          {options.map((option, index) => (
-            <li
-              key={option.value}
-              id={optionId(index)}
-              role="option"
-              aria-selected={option.value === selectedValue}
-              className={cx(
-                styles.option,
-                option.value === selectedValue && styles.optionSelected,
-                index === activeIndex && styles.optionActive,
-              )}
-              onMouseEnter={() => setActiveIndex(index)}
-              // 클릭해도 트리거 버튼의 포커스가 유지되도록
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => handleSelect(option.value)}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
+    <div className={cx(field.wrapper, styles.wrapper, className)} ref={wrapperRef}>
+      {label && (
+        <FieldLabel id={labelId} htmlFor={triggerId} required={required} optional={optional}>
+          {label}
+        </FieldLabel>
       )}
+      <div className={styles.anchor}>
+        <button
+          ref={ref}
+          id={triggerId}
+          className={cx(field.box, field[size], styles.trigger, isOpen && field.active, error && field.invalid, disabled && field.disabled)}
+          onClick={() => (isOpen ? setIsOpen(false) : open())}
+          onKeyDown={handleKeyDown}
+          disabled={disabled}
+          type="button"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? listboxId : undefined}
+          aria-activedescendant={isOpen && activeIndex >= 0 ? optionId(activeIndex) : undefined}
+          aria-invalid={error || undefined}
+          aria-required={required || undefined}
+          aria-describedby={helperText ? helperId : undefined}
+        >
+          <span className={cx(field.text, !selectedOption && field.placeholder)}>
+            {selectedOption ? selectedOption.label : placeholder}
+          </span>
+          <Icon
+            name={isOpen ? 'chevron-up' : 'chevron-down'}
+            size={size === 'large' ? 24 : 20}
+            className={cx(field.icon, styles.arrow)}
+          />
+        </button>
+        {isOpen && (
+          <OptionGroup
+            ref={listRef}
+            id={listboxId}
+            className={styles.dropdown}
+            aria-labelledby={label ? labelId : undefined}
+            maxHeight={204}
+          >
+            {options.map((option, index) => (
+              <Option
+                key={option.value}
+                id={optionId(index)}
+                type="text2"
+                label={option.label}
+                selected={option.value === selectedValue}
+                disabled={option.disabled}
+                active={index === activeIndex}
+                onMouseEnter={() => setActiveIndex(index)}
+                // 클릭해도 트리거 버튼의 포커스가 유지되도록
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => handleSelect(option.value)}
+              />
+            ))}
+          </OptionGroup>
+        )}
+      </div>
       {helperText && (
-        <span id={helperId} className={error ? styles.helperError : styles.helper}>
+        <HelpMessage id={helperId} status={error ? 'error' : 'default'}>
           {helperText}
-        </span>
+        </HelpMessage>
       )}
     </div>
   )

@@ -1,70 +1,33 @@
 /* src/components/SelectField/SelectField.module.css */
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-4);
-  position: relative;
-  width: 100%;
+  /* Figma Select는 md 크기도 라벨·도움말 간격이 12px */
+  gap: var(--spacing-12);
 }
 
-.label {
-  font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-20);
-  color: var(--color-label-primary);
-  letter-spacing: var(--letter-spacing);
+.anchor {
+  position: relative;
 }
 
 .trigger {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
-  letter-spacing: var(--letter-spacing);
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-8) var(--spacing-12);
   cursor: pointer;
-  outline: none;
-  width: 100%;
   text-align: left;
 }
 
+.trigger:focus-visible {
+  outline: 2px solid var(--color-label-primary);
+  outline-offset: 2px;
+}
+
 .trigger:disabled {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-label-disabled);
   cursor: not-allowed;
 }
 
-.trigger:focus-visible,
-.focused {
-  border-color: var(--color-border-interactive-primary);
-}
-
-.error {
-  border-color: var(--color-state-error);
-}
-
-.value {
-  color: var(--color-label-primary);
-}
-
-.placeholder {
-  color: var(--color-label-disabled);
-}
-
 .arrow {
-  color: var(--color-label-tertiary);
-  transition: transform 0.15s ease;
-  flex-shrink: 0;
+  color: var(--color-label-secondary);
 }
 
-.arrowOpen {
-  transform: rotate(180deg);
+.trigger:disabled .arrow {
+  color: var(--color-label-disabled);
 }
 
 .dropdown {
@@ -72,51 +35,6 @@
   top: 100%;
   left: 0;
   right: 0;
-  margin-top: var(--spacing-4);
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-border-secondary);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-md);
-  list-style: none;
-  padding: var(--spacing-4) 0;
+  margin-top: var(--spacing-8);
   z-index: 10;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.option {
-  font-family: var(--font-family);
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
-  letter-spacing: var(--letter-spacing);
-  color: var(--color-label-primary);
-  padding: var(--spacing-8) var(--spacing-12);
-  cursor: pointer;
-}
-
-.option:hover,
-.optionActive {
-  background-color: var(--color-bg-secondary);
-}
-
-.optionSelected {
-  background-color: var(--color-bg-selected);
-  color: var(--color-primary-default);
-  font-weight: var(--font-weight-medium);
-}
-
-.helper {
-  font-family: var(--font-family);
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
-  color: var(--color-label-tertiary);
-  letter-spacing: var(--letter-spacing);
-}
-
-.helperError {
-  font-family: var(--font-family);
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
-  color: var(--color-state-error);
-  letter-spacing: var(--letter-spacing);
 }
