@@ -193,12 +193,14 @@ npm install --legacy-peer-deps
 
 npm run storybook      # 로컬 Storybook (http://localhost:6006)
 npm run build-tokens   # 토큰 JSON 수정 후 tokens.css 재생성
-npm run chromatic      # Chromatic 배포 (CHROMATIC_PROJECT_TOKEN 환경변수 필요)
+npm run chromatic      # 수동 배포가 필요할 때만 (CHROMATIC_PROJECT_TOKEN 환경변수 필요)
 ```
+
+main에 push하거나 PR을 만들면 GitHub Actions(`.github/workflows/chromatic.yml`)가 Storybook을 Chromatic에 자동 배포합니다. 토큰은 저장소 Secrets의 `CHROMATIC_PROJECT_TOKEN`에 들어 있습니다.
 
 ## 작업 흐름 예시: 메인 컬러 변경
 
 1. `src/tokens/color.json`에서 `semantic.primary` 값을 수정 (예: red-600 → orange-600)
 2. `npm run build-tokens`로 `tokens.css` 재생성
-3. `npm run chromatic`으로 배포
+3. 커밋 후 main에 push → 자동 배포
 4. Chromatic에서 변경된 컴포넌트의 Before/After를 확인하고 **Accept**
