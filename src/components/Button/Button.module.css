@@ -77,6 +77,7 @@
 
 /* Sizes */
 .small {
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-size-14);
   line-height: var(--line-height-20);
   padding: var(--spacing-8) var(--spacing-16);

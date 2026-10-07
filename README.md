@@ -52,7 +52,7 @@ Storybook → Chromatic 배포
 | **ButtonStack** | `direction`: horizontal · vertical / `padded`(화면 하단용 여백) |
 | **TextField** | `label`, `required`, `optional`, `size`: medium · large / `rightIcon`, `error`, `success`, `helperText`, `disabled` |
 | **TextArea** | `label`, `maxLength` + `showCount`(글자 수), `error`, `success`, `helperText`, `disabled` |
-| **SelectField** | `options`, `size`: medium · large / `required`, `optional`, `error`, `helperText`, `disabled` |
+| **SelectField** | `options`(옵션별 `description` 가능), `size`: medium · large / `required`, `optional`, `error`, `helperText`, `disabled` |
 | **SearchField** | `label`, `size`: medium · large / 클리어 버튼(`onClear`), `error`, `helperText`, `disabled` |
 | **Checkbox** | `checked`, `label`, `disabled` |
 | **Radio** | `checked`, `label`, `name`, `value`, `disabled` |

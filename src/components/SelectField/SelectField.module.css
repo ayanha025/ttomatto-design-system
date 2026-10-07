@@ -35,6 +35,6 @@
   top: 100%;
   left: 0;
   right: 0;
-  margin-top: var(--spacing-8);
+  margin-top: var(--spacing-20);
   z-index: 10;
 }

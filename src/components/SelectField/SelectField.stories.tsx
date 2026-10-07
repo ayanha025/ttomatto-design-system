@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SelectField } from './SelectField'
 
 const sampleOptions = [
-  { label: '옵션 1', value: 'opt1' },
+  { label: '옵션 1', value: 'opt1', description: '보조 설명' },
   { label: '옵션 2', value: 'opt2' },
   { label: '옵션 3', value: 'opt3' },
   { label: '옵션 4', value: 'opt4' },

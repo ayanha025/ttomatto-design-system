@@ -13,6 +13,8 @@ import styles from './SelectField.module.css'
 export interface SelectOption {
   label: string
   value: string
+  /** 옵션 아래 보조 설명 */
+  description?: string
   disabled?: boolean
 }
 
@@ -179,14 +181,15 @@ export const SelectField = forwardRef<HTMLButtonElement, SelectFieldProps>(funct
             id={listboxId}
             className={styles.dropdown}
             aria-labelledby={label ? labelId : undefined}
-            maxHeight={204}
+            maxHeight={540}
           >
             {options.map((option, index) => (
               <Option
                 key={option.value}
                 id={optionId(index)}
-                type="text2"
+                type="text"
                 label={option.label}
+                subText={option.description}
                 selected={option.value === selectedValue}
                 disabled={option.disabled}
                 active={index === activeIndex}
