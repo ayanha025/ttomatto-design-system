@@ -4,7 +4,7 @@ Figma에서 설계한 **ttomatto Design System**을 React 컴포넌트로 구현
 
 > 디자이너가 디자인시스템의 코드 구현체까지 직접 관리하고 검증할 수 있다는 것을 보여주기 위해 만들었습니다.
 
-**🔗 Storybook:** (배포 후 추가)
+**🔗 Storybook:** https://main--6ac5b687c58b0f9b4ba4fe91.chromatic.com
 
 ---
 
