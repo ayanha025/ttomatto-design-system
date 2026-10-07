@@ -4,6 +4,6 @@ import { create } from '@storybook/theming'
 addons.setConfig({
   theme: create({
     base: 'light',
-    brandTitle: 'New Design System',
+    brandTitle: 'ttomatto Design System',
   }),
 })

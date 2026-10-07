@@ -17,16 +17,16 @@
       "900": "#171717"
     },
     "red": {
-      "50": "#FEF2F2",
-      "100": "#FEE2E2",
-      "200": "#FECACA",
-      "300": "#FCA5A5",
-      "400": "#F87171",
-      "500": "#EF4444",
-      "600": "#DC2626",
-      "700": "#B91C1C",
-      "800": "#991B1B",
-      "900": "#7F1D1D"
+      "50": "#FEEFEE",
+      "100": "#FDE2E0",
+      "200": "#FBC5C1",
+      "300": "#F99D94",
+      "400": "#F86F63",
+      "500": "#F55547",
+      "600": "#F43D2D",
+      "700": "#E22312",
+      "800": "#B32114",
+      "900": "#881F16"
     },
     "orange": {
       "50": "#FFF7ED",
@@ -75,6 +75,13 @@
       "700": "#1D4ED8",
       "800": "#1E40AF",
       "900": "#1E3A8A"
+    },
+    "error": {
+      "50": "#FEEEF0",
+      "500": "#DF3A45",
+      "600": "#D11F2B",
+      "700": "#AE1923",
+      "800": "#88161E"
     }
   },
   "semantic": {
@@ -89,29 +96,29 @@
       "info": "#3B82F6",
       "info-strong": "#1E40AF",
       "info-weak": "#EFF6FF",
-      "warning": "#FAC515",
+      "warning": "#FACC15",
       "warning-strong": "#A16207",
       "warning-weak": "#FEFCE8",
       "success": "#22C55E",
       "success-strong": "#166534",
       "success-weak": "#F0FDF4",
-      "error": "#EF4444",
-      "error-strong": "#991B1B",
-      "error-weak": "#FEF2F2"
+      "error": "#DF3A45",
+      "error-strong": "#88161E",
+      "error-weak": "#FEEEF0"
     },
     "bg": {
       "primary": "#FFFFFF",
       "secondary": "#F5F5F5",
       "tertiary": "#E5E5E5",
       "disabled": "#D4D4D4",
-      "selected": "#FEFEFE",
-      "selected-hovered": "#FFF7ED",
-      "selected-pressed": "#FFEDD5"
+      "selected": "#FEEFEE",
+      "selected-hovered": "#FDE2E0",
+      "selected-pressed": "#FBC5C1"
     },
     "primary": {
-      "default": "#EA580C",
-      "hovered": "#C2410C",
-      "pressed": "#9A3412"
+      "default": "#F43D2D",
+      "hovered": "#E22312",
+      "pressed": "#B32114"
     },
     "secondary": {
       "default": "#404040",
@@ -128,7 +135,7 @@
       "secondary": "#E5E5E5",
       "tertiary": "#F5F5F5",
       "disabled": "#A3A3A3",
-      "interactive-primary": "#404040",
+      "interactive-primary": "#D4D4D4",
       "interactive-primary-hovered": "#A3A3A3",
       "interactive-primary-pressed": "#737373"
     },

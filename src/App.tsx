@@ -1,4 +1,4 @@
 function App() {
-  return <div>New Design System</div>
+  return <div>ttomatto Design System</div>
 }
 export default App

@@ -1,6 +1,6 @@
-# New Design System
+# ttomatto Design System
 
-Figma에서 설계한 **New Design System**을 React 컴포넌트로 구현하고, Storybook으로 문서화한 프로젝트입니다.
+Figma에서 설계한 **ttomatto Design System**을 React 컴포넌트로 구현하고, Storybook으로 문서화한 프로젝트입니다.
 
 > 디자이너가 디자인시스템의 코드 구현체까지 직접 관리하고 검증할 수 있다는 것을 보여주기 위해 만들었습니다.
 
@@ -34,7 +34,7 @@ Storybook → Chromatic 배포
 
 | 파일 | 내용 | CSS 변수 예시 |
 |---|---|---|
-| `color.json` | **Primitive**: neutral, red, orange, yellow, green, blue (50–900)<br>**Semantic**: label, bg, border, state, primary/secondary/tertiary, transparent(20·84) | `--color-orange-600`<br>`--color-primary-default` |
+| `color.json` | **Primitive**: neutral, red, orange, yellow, green, blue (50–900), error (50·500–800)<br>**Semantic**: label, bg, border, state, primary/secondary/tertiary, transparent(20·84) | `--color-red-600`<br>`--color-primary-default` |
 | `typography.json` | Pretendard / 굵기 400·500·700 / 크기 12–28px / 텍스트 스타일(heading, body) | `--font-size-16`<br>`--font-weight-bold` |
 | `spacing.json` | 0–64px 스케일 | `--spacing-16` |
 | `radius.json` | xs(4) · sm(8) · md(12) · lg(16) · xl(20) · full | `--radius-md` |
