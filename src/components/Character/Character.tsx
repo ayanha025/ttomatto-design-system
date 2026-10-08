@@ -26,7 +26,7 @@ export type CharacterPose = keyof typeof characterPoses
 
 export interface CharacterProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   pose?: CharacterPose
-  /** 가로·세로 크기(px). 원본은 400 (흰 배경 포함) */
+  /** 가로·세로 크기(px). 원본은 400 (배경 투명) */
   size?: number
 }
 

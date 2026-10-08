@@ -39,9 +39,7 @@ export const Variations: Story = {
             gap: '4px',
             padding: '16px 8px',
             borderRadius: 'var(--radius-sm)',
-            // 캐릭터 이미지 배경이 흰색이라 카드도 흰색 + 테두리로 맞춤
-            background: 'var(--color-bg-primary)',
-            border: '1px solid var(--color-border-secondary)',
+            background: 'var(--color-bg-secondary)',
           }}
         >
           <Character pose={pose} size={136} />
