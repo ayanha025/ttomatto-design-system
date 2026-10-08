@@ -47,6 +47,9 @@ Storybook → Chromatic 배포
 
 | 컴포넌트 | 주요 옵션 |
 |---|---|
+| **Logo** | `type`: wordmark · symbol · horizontal · vertical / `variant`: color · simple(단색, `color`로 색 지정) / `height`, `label` |
+| **BrandIcon** | `name`(가게 필터·태그 아이콘 32종), `size`, `label` — 브랜드 컬러가 들어간 일러스트 아이콘 |
+| **Character** | `pose`: default · pizza · stop · pencil · search · cooking · laptop / `size`(기본 160) — `<img>`로 렌더링 |
 | **Icon** | `name`(아이콘 50종), `size`, `label` — 색은 `color`(currentColor)로 지정 |
 | **Button** | `variant`: primary · secondary · tertiary / `size`: small(36) · medium(44) · large(48) / `leftIcon`, `rightIcon`, `loading`, `disabled` |
 | **ButtonStack** | `direction`: horizontal · vertical / `padded`(화면 하단용 여백) |

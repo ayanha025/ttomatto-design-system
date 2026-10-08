@@ -1,0 +1,25 @@
+import { Meta, Unstyled } from '@storybook/blocks'
+import faviconCharacter from './favicon-character.png'
+import faviconWordmark from './favicon-wordmark.png'
+
+<Meta title="Brand/Favicon" />
+
+# Favicon
+
+앱 아이콘과 파비콘에 쓰는 512 × 512 이미지입니다. 서비스의 `public` 폴더에 넣어 사용합니다.
+
+<Unstyled>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', fontFamily: 'var(--font-family)' }}>
+    {[
+      { src: faviconCharacter, name: 'favicon-character.png', desc: '캐릭터' },
+      { src: faviconWordmark, name: 'favicon-wordmark.png', desc: '워드마크' },
+    ].map((item) => (
+      <figure key={item.name} style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <img src={item.src} alt={`${item.desc} 파비콘`} width={200} height={200} />
+        <figcaption style={{ fontSize: 'var(--font-size-12)', color: 'var(--color-label-tertiary)' }}>
+          {item.desc} · <a href={item.src} download={item.name}>{item.name} 내려받기</a>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</Unstyled>
