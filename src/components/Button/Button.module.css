@@ -78,22 +78,22 @@
 /* Sizes */
 .small {
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
   padding: var(--spacing-8) var(--spacing-16);
   min-height: 36px;
 }
 
 .medium {
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
   padding: var(--spacing-12) var(--spacing-16);
   min-height: 44px;
 }
 
 .large {
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-24);
+  font-size: var(--body-lg-font-size);
+  line-height: var(--body-lg-line-height);
   padding: var(--spacing-12) var(--spacing-24);
   min-height: 48px;
 }

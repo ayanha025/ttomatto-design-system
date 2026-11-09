@@ -45,9 +45,9 @@
 .body {
   overflow-y: auto;
   font-family: var(--font-family);
-  font-size: var(--font-size-16);
+  font-size: var(--body-lg-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-24);
+  line-height: var(--body-lg-line-height);
   color: var(--color-label-secondary);
   letter-spacing: var(--letter-spacing);
 }

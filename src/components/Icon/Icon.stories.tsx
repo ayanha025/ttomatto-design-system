@@ -46,7 +46,7 @@ export const Overview: Story = {
           }}
         >
           <Icon name={name} />
-          <span style={{ fontSize: 'var(--font-size-12)', color: 'var(--color-label-tertiary)' }}>{name}</span>
+          <span style={{ fontSize: 'var(--body-sm-font-size)', color: 'var(--color-label-tertiary)' }}>{name}</span>
         </div>
       ))}
     </div>

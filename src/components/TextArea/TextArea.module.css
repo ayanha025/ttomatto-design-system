@@ -11,9 +11,9 @@
   gap: var(--spacing-4);
   margin-left: auto;
   font-family: var(--font-family);
-  font-size: var(--font-size-14);
+  font-size: var(--body-md-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-20);
+  line-height: var(--body-md-line-height);
   letter-spacing: var(--letter-spacing);
   color: var(--color-label-tertiary);
 }

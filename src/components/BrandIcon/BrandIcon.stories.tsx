@@ -35,8 +35,8 @@ export const Overview: Story = {
           <h3
             style={{
               margin: '0 0 8px',
-              fontSize: 'var(--font-size-14)',
-              fontWeight: 'var(--font-weight-semibold)',
+              fontSize: 'var(--body-md-font-size)',
+              fontWeight: 'var(--font-weight-bold)',
               color: 'var(--color-label-primary)',
             }}
           >
@@ -59,7 +59,7 @@ export const Overview: Story = {
                   }}
                 >
                   <BrandIcon name={name} size={32} />
-                  <span style={{ fontSize: 'var(--font-size-12)', color: 'var(--color-label-tertiary)', textAlign: 'center' }}>
+                  <span style={{ fontSize: 'var(--body-sm-font-size)', color: 'var(--color-label-tertiary)', textAlign: 'center' }}>
                     {name}
                     <br />
                     {brandIcons[name].label}

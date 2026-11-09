@@ -1,0 +1,101 @@
+{
+  "$description": "Figma 변수 컬렉션 'Semantic'. 용도별 이름. 컴포넌트는 이 토큰만 사용한다.",
+  "Color": {
+    "primary": {
+      "default": "{Color/primary/600}",
+      "hovered": "{Color/primary/700}",
+      "pressed": "{Color/primary/800}"
+    },
+    "secondary": {
+      "default": "{Color/secondary/700}",
+      "hovered": "{Color/secondary/800}",
+      "pressed": "{Color/secondary/900}"
+    },
+    "tertiary": {
+      "default": "{Color/neutral/100}",
+      "hovered": "{Color/neutral/200}",
+      "pressed": "{Color/neutral/300}"
+    },
+    "label": {
+      "primary": "{Color/neutral/900}",
+      "secondary": "{Color/neutral/700}",
+      "tertiary": "{Color/neutral/500}",
+      "disabled": "{Color/neutral/400}",
+      "inverse": "{Color/base/white}"
+    },
+    "bg": {
+      "primary": "{Color/base/white}",
+      "secondary": "{Color/neutral/100}",
+      "tertiary": "{Color/neutral/200}",
+      "disabled": "{Color/neutral/300}",
+      "selected": "{Color/primary/50}",
+      "selected-hovered": "{Color/primary/100}",
+      "selected-pressed": "{Color/primary/200}"
+    },
+    "border": {
+      "primary": "{Color/neutral/300}",
+      "secondary": "{Color/neutral/200}",
+      "tertiary": "{Color/neutral/100}",
+      "disabled": "{Color/neutral/400}",
+      "interactive": {
+        "primary": "{Color/neutral/300}",
+        "primary-hovered": "{Color/neutral/400}",
+        "primary-pressed": "{Color/neutral/500}"
+      }
+    },
+    "state": {
+      "info-weak": "{Color/blue/50}",
+      "info": "{Color/blue/500}",
+      "info-strong": "{Color/blue/800}",
+      "warning-weak": "{Color/yellow/50}",
+      "warning": "{Color/yellow/400}",
+      "warning-strong": "{Color/yellow/700}",
+      "success-weak": "{Color/green/50}",
+      "success": "{Color/green/500}",
+      "success-strong": "{Color/green/800}",
+      "error-weak": "{Color/error/50}",
+      "error": "{Color/error/500}",
+      "error-strong": "{Color/error/800}"
+    }
+  },
+  "Typography": {
+    "font family": "{Typography/font family/typeface}",
+    "letter spacing": "{Typography/letter spacing/normal}",
+    "bold": "{Typography/font weight/Bold}",
+    "medium": "{Typography/font weight/Medium}",
+    "regular": "{Typography/font weight/Regular}",
+    "Heading": {
+      "xl": { "font size": "{Typography/font size/28}", "line height": "{Typography/line height/38}" },
+      "lg": { "font size": "{Typography/font size/24}", "line height": "{Typography/line height/34}" },
+      "md": { "font size": "{Typography/font size/20}", "line height": "{Typography/line height/28}" },
+      "sm": { "font size": "{Typography/font size/18}", "line height": "{Typography/line height/26}" }
+    },
+    "Body": {
+      "lg": { "font size": "{Typography/font size/16}", "line height": "{Typography/line height/24}" },
+      "md": { "font size": "{Typography/font size/14}", "line height": "{Typography/line height/20}" },
+      "sm": { "font size": "{Typography/font size/12}", "line height": "{Typography/line height/18}" }
+    }
+  },
+  "Appearance": {
+    "spacing": {
+      "0": "{Number/unit/0}", "2": "{Number/unit/2}", "4": "{Number/unit/4}", "8": "{Number/unit/8}",
+      "12": "{Number/unit/12}", "16": "{Number/unit/16}", "20": "{Number/unit/20}", "24": "{Number/unit/24}",
+      "32": "{Number/unit/32}", "40": "{Number/unit/40}", "48": "{Number/unit/48}", "64": "{Number/unit/64}"
+    },
+    "border": {
+      "radius": {
+        "xs": "{Number/unit/4}",
+        "sm": "{Number/unit/8}",
+        "md": "{Number/unit/12}",
+        "lg": "{Number/unit/16}",
+        "xl": "{Number/unit/20}",
+        "full": 99999
+      },
+      "width": {
+        "sm": "{Number/unit/1}",
+        "md": "{Number/unit/2}",
+        "lg": "{Number/unit/4}"
+      }
+    }
+  }
+}

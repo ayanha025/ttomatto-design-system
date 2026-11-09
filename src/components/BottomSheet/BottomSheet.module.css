@@ -36,7 +36,7 @@
 .handle {
   width: 36px;
   height: 4px;
-  background-color: var(--color-neutral-500);
+  background-color: var(--color-label-tertiary);
   border-radius: var(--radius-full);
 }
 
@@ -46,9 +46,9 @@
   padding: 0 var(--spacing-20);
   overflow-y: auto;
   font-family: var(--font-family);
-  font-size: var(--font-size-16);
+  font-size: var(--body-lg-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-24);
+  line-height: var(--body-lg-line-height);
   color: var(--color-label-secondary);
   letter-spacing: var(--letter-spacing);
 }

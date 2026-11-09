@@ -6,17 +6,17 @@
 }
 
 .sectionTitle {
-  font-size: var(--font-size-16);
+  font-size: var(--body-lg-font-size);
   font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-24);
+  line-height: var(--body-lg-line-height);
   color: var(--color-label-primary);
   margin: 0 0 4px;
   text-transform: capitalize;
 }
 
 .sectionDesc {
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
   color: var(--color-label-tertiary);
   margin: 0 0 16px;
 }
@@ -84,9 +84,9 @@
 }
 
 .swatchName {
-  font-size: var(--font-size-12);
+  font-size: var(--body-sm-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-18);
+  line-height: var(--body-sm-line-height);
   color: var(--color-label-primary);
 }
 
@@ -96,6 +96,13 @@
   line-height: 16px;
   color: var(--color-label-tertiary);
   word-break: break-all;
+}
+
+.ref {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-label-secondary);
 }
 
 .copied {
@@ -109,7 +116,7 @@
 }
 
 .table th {
-  font-size: var(--font-size-12);
+  font-size: var(--body-sm-font-size);
   font-weight: var(--font-weight-medium);
   color: var(--color-label-tertiary);
   text-align: left;
@@ -122,7 +129,7 @@
   padding: 16px 12px;
   border-bottom: 1px solid var(--color-border-secondary);
   vertical-align: middle;
-  font-size: var(--font-size-14);
+  font-size: var(--body-md-font-size);
   color: var(--color-label-secondary);
 }
 
@@ -189,8 +196,8 @@
   margin: 12px 0 0;
   text-align: center;
   font-family: var(--font-family);
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
+  font-size: var(--body-sm-font-size);
+  line-height: var(--body-sm-line-height);
   color: var(--color-label-tertiary);
 }
 
@@ -222,20 +229,20 @@
   right: -13px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: var(--font-size-12);
+  font-size: var(--body-sm-font-size);
   color: var(--color-label-disabled);
 }
 
 .stepTitle {
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
   font-weight: var(--font-weight-bold);
   color: var(--color-label-primary);
 }
 
 .stepDesc {
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
+  font-size: var(--body-sm-font-size);
+  line-height: var(--body-sm-line-height);
   color: var(--color-label-tertiary);
 }
 
@@ -260,14 +267,14 @@
 }
 
 .statValue {
-  font-size: var(--font-size-28);
-  line-height: var(--line-height-38);
+  font-size: var(--heading-xl-font-size);
+  line-height: var(--heading-xl-line-height);
   font-weight: var(--font-weight-bold);
   color: var(--color-label-primary);
 }
 
 .statLabel {
-  font-size: var(--font-size-12);
-  line-height: var(--line-height-18);
+  font-size: var(--body-sm-font-size);
+  line-height: var(--body-sm-line-height);
   color: var(--color-label-tertiary);
 }

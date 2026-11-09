@@ -1,6 +1,0 @@
-{
-  "raised": "0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-  "floating": "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
-  "toast": "0 2px 8px 0 rgba(0, 0, 0, 0.2)",
-  "modal": "0 4px 24px 0 rgba(0, 0, 0, 0.16)"
-}

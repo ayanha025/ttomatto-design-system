@@ -1,12 +1,23 @@
 import { Meta, Unstyled } from '@storybook/blocks'
-import { SpacingScale } from './TokenBlocks'
+import { SpacingScale, NumberUnits } from './TokenBlocks'
 
 <Meta title="Foundations/Spacing" />
 
 # Spacing
 
 여백과 간격은 4px 단위를 기본으로 합니다. 패딩, 요소 사이 간격(gap), 마진에 사용합니다.
+Spacing 변수(Semantic)는 숫자 단위 변수(Primitive `Number/unit`)를 참조합니다.
+
+## Semantic 변수
 
 <Unstyled>
   <SpacingScale />
+</Unstyled>
+
+## Primitive 변수
+
+Spacing, Radius, Border width가 함께 참조하는 숫자 단위입니다. 컴포넌트에서 직접 쓰지 않습니다.
+
+<Unstyled>
+  <NumberUnits />
 </Unstyled>
