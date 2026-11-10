@@ -1,5 +1,5 @@
 import { Meta, Unstyled } from '@storybook/blocks'
-import { TypeStyles, TypeTokens } from './TokenBlocks'
+import { TypeStyles, SemanticTypeTokens, PrimitiveTypeTokens } from './TokenBlocks'
 
 <Meta title="Foundations/Typography" />
 
@@ -9,16 +9,22 @@ import { TypeStyles, TypeTokens } from './TokenBlocks'
 
 ## 텍스트 스타일
 
-Figma에 정의된 텍스트 스타일입니다. 크기·행간·굵기를 조합해 제목(heading)과 본문(body) 위계를 만듭니다.
+Figma에 정의된 텍스트 스타일입니다. 각 스타일은 Semantic 변수(크기·행간·굵기)를 조합해 만듭니다.
 
 <Unstyled>
   <TypeStyles />
 </Unstyled>
 
-## 토큰
+## Semantic 변수
 
-컴포넌트는 아래 CSS 변수를 조합해 텍스트 스타일을 적용합니다.
+제목(Heading)과 본문(Body)의 크기·행간, 굵기, 폰트, 자간입니다. Primitive 변수를 참조합니다.
 
 <Unstyled>
-  <TypeTokens />
+  <SemanticTypeTokens />
+</Unstyled>
+
+## Primitive 변수
+
+<Unstyled>
+  <PrimitiveTypeTokens />
 </Unstyled>

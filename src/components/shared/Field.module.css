@@ -18,9 +18,9 @@
   align-items: center;
   gap: var(--spacing-4);
   font-family: var(--font-family);
-  font-size: var(--font-size-16);
+  font-size: var(--body-lg-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-24);
+  line-height: var(--body-lg-line-height);
   letter-spacing: var(--letter-spacing);
   color: var(--color-label-primary);
 }
@@ -36,9 +36,9 @@
 /* Help message */
 .help {
   font-family: var(--font-family);
-  font-size: var(--font-size-14);
+  font-size: var(--body-md-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-20);
+  line-height: var(--body-md-line-height);
   letter-spacing: var(--letter-spacing);
 }
 
@@ -85,7 +85,7 @@
 .box:focus-within,
 .box.active {
   box-shadow: 0 0 0 1px var(--color-border-interactive-primary-pressed);
-  color: var(--color-neutral-600);
+  color: var(--color-label-secondary);
 }
 
 .box.invalid {
@@ -117,13 +117,13 @@
 }
 
 .large .text {
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-24);
+  font-size: var(--body-lg-font-size);
+  line-height: var(--body-lg-line-height);
 }
 
 .medium .text {
-  font-size: var(--font-size-14);
-  line-height: var(--line-height-20);
+  font-size: var(--body-md-font-size);
+  line-height: var(--body-md-line-height);
 }
 
 .text::placeholder,

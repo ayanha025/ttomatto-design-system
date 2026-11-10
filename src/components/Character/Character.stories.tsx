@@ -43,7 +43,7 @@ export const Variations: Story = {
           }}
         >
           <Character pose={pose} size={136} />
-          <span style={{ fontSize: 'var(--font-size-12)', color: 'var(--color-label-tertiary)' }}>{pose}</span>
+          <span style={{ fontSize: 'var(--body-sm-font-size)', color: 'var(--color-label-tertiary)' }}>{pose}</span>
         </div>
       ))}
     </div>

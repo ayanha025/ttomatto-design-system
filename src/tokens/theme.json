@@ -1,0 +1,15 @@
+{
+  "$description": "Figma 변수 컬렉션 'Theme'. 브랜드 팔레트를 Primitive에 연결한다. 브랜드 컬러를 바꿀 때는 여기만 수정한다.",
+  "Color": {
+    "primary": {
+      "50": "{Color/red/50}", "100": "{Color/red/100}", "200": "{Color/red/200}",
+      "600": "{Color/red/600}", "700": "{Color/red/700}", "800": "{Color/red/800}"
+    },
+    "secondary": {
+      "50": "{Color/neutral/50}", "100": "{Color/neutral/100}", "200": "{Color/neutral/200}",
+      "300": "{Color/neutral/300}", "400": "{Color/neutral/400}", "500": "{Color/neutral/500}",
+      "600": "{Color/neutral/600}", "700": "{Color/neutral/700}", "800": "{Color/neutral/800}",
+      "900": "{Color/neutral/900}"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$description": "Figma 스타일(변수가 아닌 Text·Effect·Grid 스타일). 값은 변수 경로로 참조한다.",
+  "text": {
+    "Heading/xl": { "size": "Heading/xl", "weight": "bold" },
+    "Heading/lg": { "size": "Heading/lg", "weight": "bold" },
+    "Heading/md": { "size": "Heading/md", "weight": "bold" },
+    "Heading/sm": { "size": "Heading/sm", "weight": "bold" },
+    "Body/lg/bold": { "size": "Body/lg", "weight": "bold" },
+    "Body/lg/medium": { "size": "Body/lg", "weight": "medium" },
+    "Body/lg/regular": { "size": "Body/lg", "weight": "regular" },
+    "Body/md/bold": { "size": "Body/md", "weight": "bold" },
+    "Body/md/medium": { "size": "Body/md", "weight": "medium" },
+    "Body/md/regular": { "size": "Body/md", "weight": "regular" },
+    "Body/sm/bold": { "size": "Body/sm", "weight": "bold" },
+    "Body/sm/medium": { "size": "Body/sm", "weight": "medium" },
+    "Body/sm/regular": { "size": "Body/sm", "weight": "regular" }
+  },
+  "effect": {
+    "1_raised": { "x": 0, "y": 2, "blur": 4, "spread": 0, "color": "{Color/transparent/6}" },
+    "2_floating": { "x": 0, "y": 2, "blur": 4, "spread": 0, "color": "{Color/transparent/10}" },
+    "3_toast": { "x": 0, "y": 2, "blur": 8, "spread": 0, "color": "{Color/transparent/20}" },
+    "4_modal": { "x": 0, "y": 4, "blur": 24, "spread": 0, "color": "{Color/transparent/16}" }
+  },
+  "grid": {
+    "Mobile": { "breakpoint": "320px – 430px", "columns": 4, "gutter": 16, "margin": 20 }
+  }
+}

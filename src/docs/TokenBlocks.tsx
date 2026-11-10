@@ -1,26 +1,48 @@
 // src/docs/TokenBlocks.tsx
 // Storybook 문서(Foundations, Introduction)에서 쓰는 토큰 시각화 블록.
-// 값은 토큰 JSON에서 읽고, 견본은 실제 CSS 변수(tokens.css)로 그린다.
+// build-tokens가 만든 src/styles/tokens.json(Figma 변수 경로 · CSS 변수 · 참조 · 최종 값)을 읽고,
+// 견본은 실제 CSS 변수(tokens.css)로 그린다.
 import { useState } from 'react'
-import color from '../tokens/color.json'
-import typography from '../tokens/typography.json'
-import spacing from '../tokens/spacing.json'
-import radius from '../tokens/radius.json'
-import shadow from '../tokens/shadow.json'
-import grid from '../tokens/grid.json'
+import generated from '../styles/tokens.json'
 import styles from './TokenBlocks.module.css'
 
-// build-tokens.js와 같은 규칙으로 CSS 변수 이름을 만든다
-const primitiveVar = (group: string, name: string) =>
-  group === 'base' ? `--color-base-${name}` : `--color-${group}-${name}`
-const semanticVar = (group: string, name: string) => `--color-${group}-${name}`
+type Collection = 'Primitive' | 'Theme' | 'Semantic'
+type Token = {
+  collection: Collection
+  figma: string
+  cssVar: string
+  ref: string | null
+  value: string
+}
 
-function Swatch({ name, cssVar, value }: { name: string; cssVar: string; value: string }) {
+const variables = generated.variables as Token[]
+const byFigma = Object.fromEntries(variables.map(t => [t.figma, t]))
+
+/** collection 안에서 Figma 경로가 prefix로 시작하는 변수 */
+const pick = (collection: Collection, prefix: string) =>
+  variables.filter(t => t.collection === collection && t.figma.startsWith(prefix))
+
+/** prefix 바로 다음 단계로 묶기 (Color/label/primary → label) */
+function groupBy(list: Token[], prefix: string) {
+  const groups = new Map<string, Token[]>()
+  for (const t of list) {
+    const key = t.figma.slice(prefix.length).split('/')[0]
+    groups.set(key, [...(groups.get(key) ?? []), t])
+  }
+  return [...groups]
+}
+
+const leaf = (t: Token, prefix: string) => t.figma.slice(prefix.length).split('/').slice(1).join('/')
+
+/** 참조 표시: Color/primary/600 → primary/600 */
+const shortRef = (ref: string) => ref.split('/').slice(1).join('/')
+
+function Swatch({ name, token }: { name: string; token: Token }) {
   const [copied, setCopied] = useState(false)
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(`var(${cssVar})`)
+      await navigator.clipboard.writeText(`var(${token.cssVar})`)
       setCopied(true)
       setTimeout(() => setCopied(false), 1200)
     } catch {
@@ -29,15 +51,16 @@ function Swatch({ name, cssVar, value }: { name: string; cssVar: string; value: 
   }
 
   return (
-    <button type="button" className={styles.swatch} onClick={copy} title={`클릭해서 var(${cssVar}) 복사`}>
+    <button type="button" className={styles.swatch} onClick={copy} title={`클릭해서 var(${token.cssVar}) 복사`}>
       <div className={styles.chip}>
-        <div className={styles.chipFill} style={{ background: `var(${cssVar})` }} />
+        <div className={styles.chipFill} style={{ background: `var(${token.cssVar})` }} />
       </div>
       <div className={styles.swatchMeta}>
         <span className={styles.swatchName}>{name}</span>
-        <span className={styles.code}>{value}</span>
+        {token.ref && <span className={styles.ref}>→ {shortRef(token.ref)}</span>}
+        <span className={styles.code}>{token.value}</span>
         <span className={`${styles.code} ${copied ? styles.copied : ''}`}>
-          {copied ? '복사됨' : cssVar}
+          {copied ? '복사됨' : token.cssVar}
         </span>
       </div>
     </button>
@@ -54,6 +77,8 @@ function Section({ title, description, children }: { title: string; description?
   )
 }
 
+// Color -----------------------------------------------------------------------
+
 const semanticDescriptions: Record<string, string> = {
   primary: '브랜드 메인 컬러. 주요 버튼, 선택 상태, 강조 요소',
   secondary: '보조 버튼과 어두운 강조 요소',
@@ -62,78 +87,121 @@ const semanticDescriptions: Record<string, string> = {
   bg: '배경 색상',
   border: '테두리 색상. interactive는 입력 요소의 포커스·호버 상태',
   state: '성공·경고·에러·정보 상태 표시',
-  transparent: '오버레이, 토스트처럼 뒤가 비치는 배경',
 }
 
-// 브랜드 컬러가 먼저 보이도록 정렬 (목록에 없는 그룹은 뒤에 붙음)
-const semanticOrder = ['primary', 'secondary', 'tertiary', 'label', 'bg', 'border', 'state', 'transparent']
-const semanticGroups = Object.entries(color.semantic).sort(
-  ([a], [b]) => (semanticOrder.indexOf(a) + 1 || 99) - (semanticOrder.indexOf(b) + 1 || 99),
+const themeDescriptions: Record<string, string> = {
+  primary: '브랜드 메인 팔레트 → Primitive red',
+  secondary: '보조 팔레트 → Primitive neutral',
+}
+
+function ColorGroups({
+  collection,
+  layout,
+  descriptions = {},
+}: {
+  collection: Collection
+  layout: 'palette' | 'semantic'
+  descriptions?: Record<string, string>
+}) {
+  const prefix = 'Color/'
+  return (
+    <>
+      {groupBy(pick(collection, prefix), prefix).map(([group, tokens]) => (
+        <Section key={group} title={group} description={descriptions[group]}>
+          <div className={layout === 'palette' ? styles.paletteRow : styles.semanticGrid}>
+            {tokens.map(t => (
+              <Swatch key={t.figma} name={leaf(t, prefix)} token={t} />
+            ))}
+          </div>
+        </Section>
+      ))}
+    </>
+  )
+}
+
+export const PrimitiveColors = () => <ColorGroups collection="Primitive" layout="palette" />
+export const ThemeColors = () => <ColorGroups collection="Theme" layout="palette" descriptions={themeDescriptions} />
+export const SemanticColors = () => (
+  <ColorGroups collection="Semantic" layout="semantic" descriptions={semanticDescriptions} />
 )
 
-export function SemanticColors() {
+// 공통 표 ----------------------------------------------------------------------
+
+/** Figma 변수 · CSS 변수 · 참조 · 값 표. preview로 견본 칸을 추가할 수 있다. */
+function VariableTable({
+  tokens,
+  preview,
+  previewLabel,
+}: {
+  tokens: Token[]
+  preview?: (t: Token) => React.ReactNode
+  previewLabel?: string
+}) {
   return (
-    <>
-      {semanticGroups.map(([group, tokens]) => (
-        <Section key={group} title={group} description={semanticDescriptions[group]}>
-          <div className={styles.semanticGrid}>
-            {Object.entries(tokens).map(([name, value]) => (
-              <Swatch key={name} name={name} cssVar={semanticVar(group, name)} value={value} />
-            ))}
-          </div>
-        </Section>
-      ))}
-    </>
+    <table className={styles.table}>
+      <thead>
+        <tr>
+          <th>Figma 변수</th>
+          <th>CSS 변수</th>
+          <th>참조</th>
+          <th>값</th>
+          {preview && <th style={{ width: '30%' }}>{previewLabel}</th>}
+        </tr>
+      </thead>
+      <tbody>
+        {tokens.map(t => (
+          <tr key={t.figma}>
+            <td>{t.figma}</td>
+            <td><span className={styles.code}>{t.cssVar}</span></td>
+            <td>{t.ref ? <span className={styles.code}>{byFigma[t.ref].cssVar}</span> : '—'}</td>
+            <td>{t.value}</td>
+            {preview && <td>{preview(t)}</td>}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
-export function PrimitiveColors() {
-  return (
-    <>
-      {Object.entries(color.primitive).map(([group, shades]) => (
-        <Section key={group} title={group}>
-          <div className={styles.paletteRow}>
-            {Object.entries(shades).map(([name, value]) => (
-              <Swatch key={name} name={name} cssVar={primitiveVar(group, name)} value={value} />
-            ))}
-          </div>
-        </Section>
-      ))}
-    </>
-  )
-}
+// Typography ------------------------------------------------------------------
 
 export function TypeStyles() {
   return (
     <table className={styles.table}>
       <thead>
         <tr>
-          <th>이름</th>
+          <th>텍스트 스타일</th>
           <th>예시</th>
           <th>크기 / 행간</th>
           <th>굵기</th>
+          <th>CSS 변수</th>
         </tr>
       </thead>
       <tbody>
-        {Object.entries(typography.styles).map(([name, style]) => (
-          <tr key={name}>
-            <td><span className={styles.code}>{name}</span></td>
+        {generated.textStyles.map(s => (
+          <tr key={s.name}>
+            <td>{s.name}</td>
             <td>
               <p
                 className={styles.sample}
                 style={{
                   fontFamily: 'var(--font-family)',
-                  fontSize: style.fontSize,
-                  lineHeight: style.lineHeight,
-                  fontWeight: Number(style.fontWeight),
+                  fontSize: `var(${s.fontSize})`,
+                  lineHeight: `var(${s.lineHeight})`,
+                  fontWeight: `var(${s.fontWeight})`,
                   letterSpacing: 'var(--letter-spacing)',
                 }}
               >
                 디자인 시스템 Aa 123
               </p>
             </td>
-            <td>{style.fontSize} / {style.lineHeight}</td>
-            <td>{style.fontWeight}</td>
+            <td>{s.size} / {s.leading}</td>
+            <td>{s.weight}</td>
+            <td>
+              <span className={styles.code}>{s.fontSize}</span>{' '}
+              <span className={styles.code}>{s.lineHeight}</span>{' '}
+              <span className={styles.code}>{s.fontWeight}</span>
+            </td>
           </tr>
         ))}
       </tbody>
@@ -141,91 +209,71 @@ export function TypeStyles() {
   )
 }
 
-export function TypeTokens() {
-  const rows = [
-    ['--font-family', `${typography.fontFamily}, sans-serif`],
-    ['--letter-spacing', typography.letterSpacing],
-    ...Object.entries(typography.fontWeight).map(([k, v]) => [`--font-weight-${k}`, String(v)]),
-    ...Object.entries(typography.fontSize).map(([k, v]) => [`--font-size-${k}`, v]),
-    ...Object.entries(typography.lineHeight).map(([k, v]) => [`--line-height-${k}`, v]),
-  ]
-  return (
-    <table className={styles.table}>
-      <thead>
-        <tr><th>CSS 변수</th><th>값</th></tr>
-      </thead>
-      <tbody>
-        {rows.map(([name, value]) => (
-          <tr key={name}>
-            <td><span className={styles.code}>{name}</span></td>
-            <td>{value}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )
-}
+export const SemanticTypeTokens = () => <VariableTable tokens={pick('Semantic', 'Typography/')} />
+export const PrimitiveTypeTokens = () => <VariableTable tokens={pick('Primitive', 'Typography/')} />
+
+// Number (Spacing · Radius · Border width) -----------------------------------
 
 export function SpacingScale() {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr><th>CSS 변수</th><th>값</th><th style={{ width: '50%' }}>크기</th></tr>
-      </thead>
-      <tbody>
-        {Object.entries(spacing).map(([name, value]) => (
-          <tr key={name}>
-            <td><span className={styles.code}>--spacing-{name}</span></td>
-            <td>{value}</td>
-            <td><div className={styles.spacingBar} style={{ width: `var(--spacing-${name})` }} /></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <VariableTable
+      tokens={pick('Semantic', 'Appearance/spacing/')}
+      previewLabel="크기"
+      preview={t => <div className={styles.spacingBar} style={{ width: `var(${t.cssVar})` }} />}
+    />
   )
 }
+
+export const NumberUnits = () => <VariableTable tokens={pick('Primitive', 'Number/')} />
 
 export function RadiusScale() {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr><th>CSS 변수</th><th>값</th><th>모양</th></tr>
-      </thead>
-      <tbody>
-        {Object.entries(radius).map(([name, value]) => (
-          <tr key={name}>
-            <td><span className={styles.code}>--radius-{name}</span></td>
-            <td>{value}</td>
-            <td><div className={styles.radiusBox} style={{ borderRadius: `var(--radius-${name})` }} /></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <VariableTable
+      tokens={pick('Semantic', 'Appearance/border/radius/')}
+      previewLabel="모양"
+      preview={t => <div className={styles.radiusBox} style={{ borderRadius: `var(${t.cssVar})` }} />}
+    />
   )
 }
 
+export function BorderWidthScale() {
+  return (
+    <VariableTable
+      tokens={pick('Semantic', 'Appearance/border/width/')}
+      previewLabel="모양"
+      preview={t => (
+        <div className={styles.radiusBox} style={{ border: `var(${t.cssVar}) solid var(--color-border-primary)` }} />
+      )}
+    />
+  )
+}
+
+// Shadow ----------------------------------------------------------------------
+
 const shadowUsage: Record<string, string> = {
-  raised: '리뷰 카드 · 가게 카드 · 그룹 카드',
-  floating: '바텀시트 · 드롭다운',
-  toast: '토스트 · 스낵바',
-  modal: '모달 · 다이얼로그',
+  '1_raised': '리뷰 카드 · 가게 카드 · 그룹 카드',
+  '2_floating': '바텀시트 · 드롭다운',
+  '3_toast': '토스트 · 스낵바',
+  '4_modal': '모달 · 다이얼로그',
 }
 
 export function ShadowScale() {
   return (
     <table className={styles.table}>
       <thead>
-        <tr><th>CSS 변수</th><th>값</th><th>사용처</th><th>모양</th></tr>
+        <tr><th>Effect 스타일</th><th>CSS 변수</th><th>값</th><th>색상 변수</th><th>사용처</th><th>모양</th></tr>
       </thead>
       <tbody>
-        {Object.entries(shadow).map(([name, value]) => (
-          <tr key={name}>
-            <td><span className={styles.code}>--shadow-{name}</span></td>
-            <td><span className={styles.code}>{value}</span></td>
-            <td>{shadowUsage[name]}</td>
+        {generated.effectStyles.map(e => (
+          <tr key={e.name}>
+            <td>{e.name}</td>
+            <td><span className={styles.code}>{e.cssVar}</span></td>
+            <td><span className={styles.code}>{e.value}</span></td>
+            <td>{e.colorRef ? <span className={styles.code}>{byFigma[e.colorRef].cssVar}</span> : '—'}</td>
+            <td>{shadowUsage[e.name]}</td>
             <td>
               <div className={styles.shadowStage}>
-                <div className={styles.shadowBox} style={{ boxShadow: `var(--shadow-${name})` }} />
+                <div className={styles.shadowBox} style={{ boxShadow: `var(${e.cssVar})` }} />
               </div>
             </td>
           </tr>
@@ -235,38 +283,45 @@ export function ShadowScale() {
   )
 }
 
+// Layout Grid -----------------------------------------------------------------
+
 export function LayoutGrid() {
   return (
     <>
       <table className={styles.table}>
         <thead>
-          <tr><th>그리드</th><th>화면 너비</th><th>칼럼</th><th>거터</th><th>마진</th><th>CSS 변수</th></tr>
+          <tr><th>Grid 스타일</th><th>화면 너비</th><th>칼럼</th><th>거터</th><th>마진</th><th>CSS 변수</th></tr>
         </thead>
         <tbody>
-          {Object.entries(grid).map(([name, g]) => (
-            <tr key={name}>
-              <td>{name}</td>
-              <td>{g.breakpoint}</td>
-              <td>{g.columns}</td>
-              <td>{g.gutter}</td>
-              <td>{g.margin}</td>
-              <td>
-                <span className={styles.code}>--grid-{name}-columns</span>{' '}
-                <span className={styles.code}>--grid-{name}-gutter</span>{' '}
-                <span className={styles.code}>--grid-{name}-margin</span>
-              </td>
-            </tr>
-          ))}
+          {generated.gridStyles.map(g => {
+            const n = g.name.toLowerCase()
+            return (
+              <tr key={g.name}>
+                <td>{g.name}</td>
+                <td>{g.breakpoint}</td>
+                <td>{g.columns}</td>
+                <td>{g.gutter}px</td>
+                <td>{g.margin}px</td>
+                <td>
+                  <span className={styles.code}>--grid-{n}-columns</span>{' '}
+                  <span className={styles.code}>--grid-{n}-gutter</span>{' '}
+                  <span className={styles.code}>--grid-{n}-margin</span>
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
-      <div className={styles.gridStage}>
-        <div className={styles.gridColumns}>
-          {Array.from({ length: grid.mobile.columns }, (_, i) => <div key={i} className={styles.gridColumn} />)}
+      {generated.gridStyles.map(g => (
+        <div key={g.name} className={styles.gridStage}>
+          <div className={styles.gridColumns}>
+            {Array.from({ length: g.columns }, (_, i) => <div key={i} className={styles.gridColumn} />)}
+          </div>
+          <p className={styles.gridCaption}>
+            {g.columns} columns · {g.gutter}px gutter · {g.margin}px margin
+          </p>
         </div>
-        <p className={styles.gridCaption}>
-          {grid.mobile.columns} columns · {grid.mobile.gutter} gutter · {grid.mobile.margin} margin
-        </p>
-      </div>
+      ))}
     </>
   )
 }
@@ -275,18 +330,15 @@ export function LayoutGrid() {
 
 const componentModules = import.meta.glob('../components/*/index.ts')
 const componentCount = Object.keys(componentModules).length
-
-const countColors = () =>
-  Object.values(color.primitive).reduce((n, g) => n + Object.keys(g).length, 0) +
-  Object.values(color.semantic).reduce((n, g) => n + Object.keys(g).length, 0)
+const countIn = (collection: Collection) => variables.filter(t => t.collection === collection).length
 
 export function Stats() {
   const stats = [
     { value: componentCount, label: '컴포넌트' },
-    { value: countColors(), label: '컬러 토큰 (Primitive + Semantic)' },
-    { value: Object.keys(typography.styles).length, label: '텍스트 스타일' },
-    { value: Object.keys(spacing).length, label: '간격 토큰' },
-    { value: Object.keys(radius).length + Object.keys(shadow).length, label: '라운딩 · 그림자 토큰' },
+    { value: countIn('Primitive'), label: 'Primitive 변수' },
+    { value: countIn('Theme'), label: 'Theme 변수' },
+    { value: countIn('Semantic'), label: 'Semantic 변수' },
+    { value: generated.textStyles.length, label: '텍스트 스타일' },
   ]
   return (
     <div className={styles.stats}>
@@ -302,7 +354,7 @@ export function Stats() {
 
 export function Pipeline() {
   const steps = [
-    { title: 'Figma Variables', desc: '디자인 원본' },
+    { title: 'Figma Variables', desc: 'Primitive → Theme → Semantic' },
     { title: 'Token JSON', desc: 'src/tokens/*.json' },
     { title: 'build-tokens', desc: '변환 스크립트' },
     { title: 'CSS Variables', desc: 'tokens.css', highlight: true },

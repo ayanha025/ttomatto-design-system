@@ -14,9 +14,9 @@
 .title {
   margin: 0;
   font-family: var(--font-family);
-  font-size: var(--font-size-18);
+  font-size: var(--heading-sm-font-size);
   font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-26);
+  line-height: var(--heading-sm-line-height);
   letter-spacing: var(--letter-spacing);
   color: var(--color-label-primary);
 }

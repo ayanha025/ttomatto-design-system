@@ -38,7 +38,7 @@ export const Overview: Story = {
           {(['color', 'simple'] as const).map((variant) => (
             <div key={variant} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <Logo type={type} variant={variant} />
-              <span style={{ fontSize: 'var(--font-size-12)', color: 'var(--color-label-tertiary)' }}>
+              <span style={{ fontSize: 'var(--body-sm-font-size)', color: 'var(--color-label-tertiary)' }}>
                 {type} · {variant}
               </span>
             </div>

@@ -32,16 +32,25 @@ Storybook → Chromatic 배포
 
 ## 디자인 토큰
 
-| 파일 | 내용 | CSS 변수 예시 |
-|---|---|---|
-| `color.json` | **Primitive**: neutral, red, orange, yellow, green, blue (50–900), error (50·500–800)<br>**Semantic**: label, bg, border, state, primary/secondary/tertiary, transparent(20·84) | `--color-red-600`<br>`--color-primary-default` |
-| `typography.json` | Pretendard / 굵기 400·500·600·700 / 크기 10–28px / 텍스트 스타일(heading, body) | `--font-size-16`<br>`--font-weight-bold` |
-| `spacing.json` | 0–64px 스케일 | `--spacing-16` |
-| `radius.json` | xs(4) · sm(8) · md(12) · lg(16) · xl(20) · full | `--radius-md` |
-| `shadow.json` | raised(카드) · floating(바텀시트·드롭다운) · toast · modal | `--shadow-floating` |
-| `grid.json` | 모바일 그리드 (320–430px, 4칼럼 · 거터 16 · 마진 20) | `--grid-mobile-columns` |
+토큰 JSON은 Figma 변수 컬렉션과 **같은 이름·같은 구조**로 관리합니다. 별칭은 Figma 경로로 적습니다(예: `"{Color/red/600}"`).
 
-컬러는 **Primitive → Semantic** 2단계 구조입니다. 컴포넌트는 Semantic 토큰(`primary`, `label`, `bg` 등)만 사용하므로, 브랜드 컬러를 바꿀 때 Semantic 값만 수정하면 됩니다.
+| 파일 | Figma | 내용 | CSS 변수 예시 |
+|---|---|---|---|
+| `primitive.json` | Primitive 컬렉션 | **Color**: base, neutral·red·orange·yellow·green·blue(50–900), error(50·500–800), transparent(0·6·10·16·20·32·64·84)<br>**Typography**: typeface, font size 12–28, line height 18–38, font weight 400·500·700, letter spacing<br>**Number**: unit 0–64 | `--color-red-600`<br>`--font-size-16`<br>`--unit-16` |
+| `theme.json` | Theme 컬렉션 | primary(→ red), secondary(→ neutral) 팔레트 | `--color-primary-600` |
+| `semantic.json` | Semantic 컬렉션 | **Color**: primary·secondary·tertiary, label, bg, border(interactive 포함), state<br>**Typography**: font family, letter spacing, bold·medium·regular, Heading(xl–sm)·Body(lg–sm) 크기·행간<br>**Appearance**: spacing, border radius, border width | `--color-primary-default`<br>`--body-md-font-size`<br>`--spacing-16` `--radius-md` `--border-width-sm` |
+| `styles.json` | 텍스트·Effect·Grid 스타일 | 텍스트 스타일 13종, 그림자 4종(raised·floating·toast·modal), Mobile 그리드 | `--shadow-floating`<br>`--grid-mobile-columns` |
+
+구조는 **Primitive → Theme → Semantic** 3단계입니다. `tokens.css`에서도 값을 복사하지 않고 `var()`로 연결합니다.
+
+```css
+--color-red-600: #F43D2D;                         /* Primitive */
+--color-primary-600: var(--color-red-600);        /* Theme */
+--color-primary-default: var(--color-primary-600); /* Semantic */
+```
+
+컴포넌트는 Semantic 토큰(`primary`, `label`, `bg`, `spacing` 등)만 사용합니다.
+`npm run build-tokens`는 `tokens.css`와 함께 Storybook 문서용 `src/styles/tokens.json`을 생성하고, 없는 변수를 참조하거나 이름이 겹치면 오류를 냅니다.
 
 ## 컴포넌트
 
@@ -174,11 +183,12 @@ toast.dismiss()  // 모두 닫기
 
 ```
 src/
-├── tokens/              # 디자인 토큰 원본 (JSON)
+├── tokens/              # 디자인 토큰 원본 (JSON, Figma 컬렉션과 같은 구조)
 ├── scripts/
 │   └── build-tokens.js  # JSON → CSS Variables 변환
 ├── styles/
-│   └── tokens.css       # 자동 생성 (직접 수정 X)
+│   ├── tokens.css       # 자동 생성 (직접 수정 X)
+│   └── tokens.json      # 자동 생성: Storybook 문서용 변수 목록
 ├── docs/                # Storybook 문서 페이지 (Introduction, Foundations) — 서비스에 복사하지 않음
 └── components/
     ├── shared/          # 공통 도구: cx(className 조합), useControllableState, useDialog, Field(라벨·도움말·입력 상자), DialogHeader
@@ -203,7 +213,7 @@ main에 push하거나 PR을 만들면 GitHub Actions(`.github/workflows/chromati
 
 ## 작업 흐름 예시: 메인 컬러 변경
 
-1. `src/tokens/color.json`에서 `semantic.primary` 값을 수정 (예: red-600 → orange-600)
+1. `src/tokens/theme.json`에서 `Color.primary`가 가리키는 팔레트를 수정 (예: `{Color/red/600}` → `{Color/orange/600}`)
 2. `npm run build-tokens`로 `tokens.css` 재생성
 3. 커밋 후 main에 push → 자동 배포
 4. Chromatic에서 변경된 컴포넌트의 Before/After를 확인하고 **Accept**
